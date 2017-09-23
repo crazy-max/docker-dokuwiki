@@ -2,9 +2,9 @@
 
 set -e
 
-if ! [ -e /var/dokuwiki-storage/data ]; then
-  mkdir -p /var/www /var/dokuwiki-storage/data
-fi
+mkdir -p /var/www
+mkdir -p /var/dokuwiki-storage/data
+mkdir -p /var/dokuwiki-storage/lib
 
 for dir in conf data/pages data/meta data/media data/media_attic data/media_meta data/attic lib/plugins lib/tpl; do
   if ! [ -e /var/dokuwiki-storage/${dir} ]; then
