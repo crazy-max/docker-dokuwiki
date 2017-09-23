@@ -6,12 +6,12 @@ if ! [ -e /var/dokuwiki-storage/data ]; then
   mkdir -p /var/www /var/dokuwiki-storage/data
 fi
 
-for dir in data/pages data/meta data/media data/media_attic data/media_meta data/attic conf; do
-  if ! [ -e /var/dokuwiki-storage/$dir ]; then
-    cp -r /var/www/$dir /var/dokuwiki-storage/$dir
+for dir in conf data/pages data/meta data/media data/media_attic data/media_meta data/attic lib/plugins lib/tpl; do
+  if ! [ -e /var/dokuwiki-storage/${dir} ]; then
+    cp -r /var/www/${dir} /var/dokuwiki-storage/${dir}
   fi
-  rm -rf /var/www/$dir
-  ln -s /var/dokuwiki-storage/$dir /var/www/$dir
+  rm -rf /var/www/${dir}
+  ln -s /var/dokuwiki-storage/${dir} /var/www/${dir}
 done
 
 chown -R nginx. /var/lib/nginx

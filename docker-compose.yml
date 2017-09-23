@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  dokuwiki:
+    image: crazymax/dokuwiki:latest
+    container_name: dokuwiki
+    ports:
+      - 8000:80
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/var/dokuwiki-storage
+    restart: always
