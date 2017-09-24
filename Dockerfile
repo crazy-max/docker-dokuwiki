@@ -29,6 +29,16 @@ RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php7/php-fpm.ini && \
     chmod +x /start.sh
 
 EXPOSE 80
-VOLUME ["/var/dokuwiki-storage"]
+VOLUME [
+    "/var/www/conf",
+    "/var/www/data/attic",
+    "/var/www/data/media",
+    "/var/www/data/media_attic",
+    "/var/www/data/media_meta",
+    "/var/www/data/meta",
+    "/var/www/data/pages",
+    "/var/www/lib/plugins",
+    "/var/www/lib/tpl"
+]
 
 CMD /start.sh

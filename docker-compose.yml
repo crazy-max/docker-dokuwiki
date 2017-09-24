@@ -8,5 +8,13 @@ services:
       - 8000:80
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./data:/var/dokuwiki-storage
+      - ./conf:/var/www/conf
+      - ./data/attic:/var/www/data/attic
+      - ./data/media:/var/www/data/media
+      - ./data/media_attic:/var/www/data/media_attic
+      - ./data/media_meta:/var/www/data/media_meta
+      - ./data/meta:/var/www/data/meta
+      - ./data/pages:/var/www/data/pages
+      - ./lib/plugins:/var/www/lib/plugins
+      - ./lib/tpl:/var/www/lib/tpl
     restart: always

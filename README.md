@@ -4,7 +4,7 @@
 
 ## About
 
-[DokuWiki](https://www.dokuwiki.org/dokuwiki) Docker image based on Alpine Linux and Nginx. Inspired by [istepanov docker-dokuwiki](https://github.com/istepanov/docker-dokuwiki) repository.
+[DokuWiki](https://www.dokuwiki.org/dokuwiki) Docker image based on Alpine Linux and Nginx.
 
 * Alpine Linux 3.6
 * DokuWiki 2017-02-19e
@@ -29,9 +29,22 @@ services:
       - 8000:80
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./data:/var/dokuwiki-storage
+      - ./conf:/var/www/conf
+      - ./data/attic:/var/www/data/attic
+      - ./data/media:/var/www/data/media
+      - ./data/media_attic:/var/www/data/media_attic
+      - ./data/media_meta:/var/www/data/media_meta
+      - ./data/meta:/var/www/data/meta
+      - ./data/pages:/var/www/data/pages
+      - ./lib/plugins:/var/www/lib/plugins
+      - ./lib/tpl:/var/www/lib/tpl
     restart: always
+```
 
+Then run :
+
+```bash
+$ docker-compose up -d
 ```
 
 ### Run manually
@@ -39,7 +52,15 @@ services:
 If you want to run the application manually instead of using docker-compose, you can run the Dokuwiki container with the following command:
 
 ```bash
-$ docker run -d \
-  -p 8000:80 --name dokuwiki -v /etc/localtime:/etc/localtime:ro -v $(pwd)/data:/var/dokuwiki-storage \
+$ docker run -d -p 8000:80 --name dokuwiki \
+  -v /etc/localtime:/etc/localtime:ro \
+  -v $(pwd)/conf:/var/www/conf \
+  -v $(pwd)/data/attic:/var/www/data/attic \
+  -v $(pwd)/data/media:/var/www/data/media \
+  -v $(pwd)/data/media_attic:/var/www/data/media_attic \
+  -v $(pwd)/data/media_meta:/var/www/data/media_meta \
+  -v $(pwd)/data/pages:/var/www/data/pages \
+  -v $(pwd)/data/lib/plugins:/var/www/data/lib/plugins \
+  -v $(pwd)/data/lib/tpl:/var/www/data/lib/tpl \
   crazymax/dokuwiki:latest
 ```
