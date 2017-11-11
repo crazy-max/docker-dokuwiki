@@ -67,7 +67,7 @@ We welcome all kinds of contributions :raised_hands:!<br />
 The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:<br />
 Any funds donated will be used to help further development on this project! :gift_heart:
 
-[![Donate Paypal](https://github.com/crazy-max/docker-dokuwiki/blob/master/res/paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=USUQWRGP52U7N)
+[![Donate Paypal](https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/res/paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=USUQWRGP52U7N)
 
 ## License
 
