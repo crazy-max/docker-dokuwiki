@@ -1,6 +1,6 @@
 [![Docker DokuWiki](https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/res/dokuwiki_docker.png)](https://github.com/crazy-max/docker-dokuwiki)
 
-[![Version](https://images.microbadger.com/badges/version/crazymax/dokuwiki.svg?style=flat-square)](https://microbadger.com/images/crazymax/dokuwiki) [![Docker Build Status](https://img.shields.io/docker/build/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Stars](https://img.shields.io/docker/stars/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Pulls](https://img.shields.io/docker/pulls/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Build](https://img.shields.io/docker/automated/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![DokuWiki Version](https://img.shields.io/badge/dokuwiki-2017--02--19e-yellow.svg?style=flat-square)](https://www.dokuwiki.org/releasenames) [![Donate Paypal](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=USUQWRGP52U7N) [![Flattr this!](https://img.shields.io/badge/flattr-this-green.svg?style=flat-square)](https://flattr.com/submit/auto?user_id=crazymax&url=https://github.com/crazy-max/docker-dokuwiki)
+[![Version](https://images.microbadger.com/badges/version/crazymax/dokuwiki.svg?style=flat-square)](https://microbadger.com/images/crazymax/dokuwiki) [![Docker Build Status](https://img.shields.io/docker/build/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Stars](https://img.shields.io/docker/stars/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Pulls](https://img.shields.io/docker/pulls/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Build](https://img.shields.io/docker/automated/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![DokuWiki Version](https://img.shields.io/badge/dokuwiki-2017--02--19e-yellow.svg?style=flat-square)](https://www.dokuwiki.org/releasenames) [![Donate Paypal](https://img.shields.io/badge/donate-paypal-7057ff.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=USUQWRGP52U7N)
 
 ## About
 
@@ -12,11 +12,9 @@
 * PHP7
 * Supervisord
 
-## How to use this image
+## Usage
 
-### Run using Docker Compose
-
-This is the recommended way to run Dokuwiki. You can use the following docker compose template :
+Docker compose is the recommended way to run Dokuwiki. You can use the following docker compose template :
 
 ```yaml
 version: '2'
@@ -47,9 +45,7 @@ Then run :
 $ docker-compose up -d
 ```
 
-### Run manually
-
-If you want to run the application manually instead of using docker-compose, you can run the Dokuwiki container with the following command:
+Or if you want to run the application manually instead, use the following command:
 
 ```bash
 $ docker run -d -p 8000:80 --name dokuwiki \
@@ -64,3 +60,15 @@ $ docker run -d -p 8000:80 --name dokuwiki \
   -v $(pwd)/data/lib/tpl:/var/www/data/lib/tpl \
   crazymax/dokuwiki:latest
 ```
+
+## How can i help ?
+
+We welcome all kinds of contributions :raised_hands:!<br />
+The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:<br />
+Any funds donated will be used to help further development on this project! :gift_heart:
+
+[![Donate Paypal](https://github.com/crazy-max/docker-dokuwiki/blob/master/res/paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=USUQWRGP52U7N)
+
+## License
+
+MIT. See `LICENSE` for more details.
