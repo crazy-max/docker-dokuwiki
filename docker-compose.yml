@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   dokuwiki:
@@ -7,7 +7,6 @@ services:
     ports:
       - 8000:80
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ./conf:/var/www/conf
       - ./data/attic:/var/www/data/attic
       - ./data/media:/var/www/data/media
@@ -17,4 +16,6 @@ services:
       - ./data/pages:/var/www/data/pages
       - ./lib/plugins:/var/www/lib/plugins
       - ./lib/tpl:/var/www/lib/tpl
+    environment:
+      - TZ=Europe/Paris
     restart: always

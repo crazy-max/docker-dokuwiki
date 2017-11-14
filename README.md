@@ -1,6 +1,12 @@
-[![Docker DokuWiki](https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/res/dokuwiki_docker.png)](https://github.com/crazy-max/docker-dokuwiki)
+<p align="center"><a href="https://github.com/crazy-max/docker-dokuwiki" target="_blank"><img height="100"src="https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/res/dokuwiki_docker.png"></a></p>
 
-[![Version](https://images.microbadger.com/badges/version/crazymax/dokuwiki.svg?style=flat-square)](https://microbadger.com/images/crazymax/dokuwiki) [![Docker Build Status](https://img.shields.io/docker/build/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Stars](https://img.shields.io/docker/stars/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Pulls](https://img.shields.io/docker/pulls/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![Docker Build](https://img.shields.io/docker/automated/crazymax/dokuwiki.svg?style=flat-square)](https://hub.docker.com/r/crazymax/dokuwiki/) [![DokuWiki Version](https://img.shields.io/badge/dokuwiki-2017--02--19e-yellow.svg?style=flat-square)](https://www.dokuwiki.org/releasenames) [![Donate Paypal](https://img.shields.io/badge/donate-paypal-7057ff.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=USUQWRGP52U7N)
+<p align="center">
+  <a href="https://microbadger.com/images/crazymax/dokuwiki"><img src="https://images.microbadger.com/badges/version/crazymax/dokuwiki.svg?style=flat-square" alt="Version"></a>
+  <a href="https://travis-ci.org/crazy-max/docker-dokuwiki"><img src="https://img.shields.io/travis/crazy-max/docker-dokuwiki/master.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://hub.docker.com/r/crazymax/dokuwiki/"><img src="https://img.shields.io/docker/stars/crazymax/dokuwiki.svg?style=flat-square" alt="Docker Stars"></a>
+  <a href="https://hub.docker.com/r/crazymax/dokuwiki/"><img src="https://img.shields.io/docker/pulls/crazymax/dokuwiki.svg?style=flat-square" alt="Docker Pulls"></a>
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=USUQWRGP52U7N"><img src="https://img.shields.io/badge/donate-paypal-7057ff.svg?style=flat-square" alt="Donate Paypal"></a>
+</p>
 
 ## About
 
@@ -9,47 +15,22 @@
 * Alpine Linux 3.6
 * DokuWiki 2017-02-19e
 * Nginx
-* PHP7
+* PHP 7
 * Supervisord
 
 ## Usage
 
-Docker compose is the recommended way to run Dokuwiki. You can use the following docker compose template :
-
-```yaml
-version: '2'
-
-services:
-  dokuwiki:
-    image: crazymax/dokuwiki:latest
-    container_name: dokuwiki
-    ports:
-      - 8000:80
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./conf:/var/www/conf
-      - ./data/attic:/var/www/data/attic
-      - ./data/media:/var/www/data/media
-      - ./data/media_attic:/var/www/data/media_attic
-      - ./data/media_meta:/var/www/data/media_meta
-      - ./data/meta:/var/www/data/meta
-      - ./data/pages:/var/www/data/pages
-      - ./lib/plugins:/var/www/lib/plugins
-      - ./lib/tpl:/var/www/lib/tpl
-    restart: always
-```
-
-Then run :
+Docker compose is the recommended way to run this image. You can use the following [docker compose template](docker-compose.yml), then run the container :
 
 ```bash
 $ docker-compose up -d
 ```
 
-Or if you want to run the application manually instead, use the following command:
+Or use the following command:
 
 ```bash
 $ docker run -d -p 8000:80 --name dokuwiki \
-  -v /etc/localtime:/etc/localtime:ro \
+  -e TZ="Europe/Paris" \
   -v $(pwd)/conf:/var/www/conf \
   -v $(pwd)/data/attic:/var/www/data/attic \
   -v $(pwd)/data/media:/var/www/data/media \
