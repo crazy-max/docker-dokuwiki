@@ -12,7 +12,7 @@
 
 [DokuWiki](https://www.dokuwiki.org/dokuwiki) Docker image based on Alpine Linux and Nginx.
 
-* Alpine Linux 3.6
+* Alpine Linux 3.7
 * DokuWiki 2017-02-19e
 * Nginx
 * PHP 7
