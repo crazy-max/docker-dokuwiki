@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 MAINTAINER CrazyMax <crazy-max@users.noreply.github.com>
 
 ARG BUILD_DATE
@@ -47,4 +47,4 @@ VOLUME [ "/var/www/conf", "/var/www/data/attic", "/var/www/data/media", "/var/ww
 
 WORKDIR "/var/www"
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
