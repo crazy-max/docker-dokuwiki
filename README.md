@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/crazy-max/docker-dokuwiki" target="_blank"><img height="100"src="https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/.res/docker-dokuwiki.png"></a></p>
+<p align="center"><a href="https://github.com/crazy-max/docker-dokuwiki" target="_blank"><img height="128"src="https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/.res/docker-dokuwiki.png"></a></p>
 
 <p align="center">
   <a href="https://microbadger.com/images/crazymax/dokuwiki"><img src="https://images.microbadger.com/badges/version/crazymax/dokuwiki.svg?style=flat-square" alt="Version"></a>
@@ -47,10 +47,8 @@ $ docker run -d -p 8000:80 --name dokuwiki \
 
 ## How can i help ?
 
-All kinds of contributions are welcomed :raised_hands:!
-
-The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:
-
+All kinds of contributions are welcomed :raised_hands:!<br />
+The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:<br />
 But we're not gonna lie to each other, I'd rather you buy me a beer or two :beers:!
 
 [![Beerpay](https://beerpay.io/crazy-max/docker-dokuwiki/badge.svg?style=beer-square)](https://beerpay.io/crazy-max/docker-dokuwiki)
