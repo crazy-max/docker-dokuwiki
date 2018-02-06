@@ -55,3 +55,8 @@ Any funds donated will be used to help further development on this project! :gif
 ## License
 
 MIT. See `LICENSE` for more details.
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/crazy-max/docker-dokuwiki/badge.svg?style=beer-square)](https://beerpay.io/crazy-max/docker-dokuwiki)  [![Beerpay](https://beerpay.io/crazy-max/docker-dokuwiki/make-wish.svg?style=flat-square)](https://beerpay.io/crazy-max/docker-dokuwiki?focus=wish)
