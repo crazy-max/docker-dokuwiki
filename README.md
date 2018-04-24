@@ -76,9 +76,10 @@ $ docker run -d -p 8000:80 --name dokuwiki \
   -v $(pwd)/data/media:/var/www/data/media \
   -v $(pwd)/data/media_attic:/var/www/data/media_attic \
   -v $(pwd)/data/media_meta:/var/www/data/media_meta \
+  -v $(pwd)/data/meta:/var/www/data/meta \
   -v $(pwd)/data/pages:/var/www/data/pages \
-  -v $(pwd)/data/lib/plugins:/var/www/data/lib/plugins \
-  -v $(pwd)/data/lib/tpl:/var/www/data/lib/tpl \
+  -v $(pwd)/lib/plugins:/var/www/data/lib/plugins \
+  -v $(pwd)/lib/tpl:/var/www/data/lib/tpl \
   crazymax/dokuwiki:latest
 ```
 
