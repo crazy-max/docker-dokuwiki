@@ -1,8 +1,20 @@
 # Changelog
 
+## 2018-04-22-RC1 (2018/04/24)
+
+* Upgrade to DokuWiki 2018-04-22 "Greebo"
+* Improve Nginx configuration
+* Permissions fix
+* Add Traefik (see docker-compose)
+* Disable auto restart and retries of "supervisored" programs (Docker Way)
+* Redirect Nginx and PHP-FPM to stdout
+* Remove build dependencies
+* Publish image to Quay
+* Add GD and ImageMagick lib
+
 ## 2017-02-19e-RC4 (2018/01/10)
 
-* Update to Alpine 3.7
+* Upgrade to Alpine 3.7
 
 ## 2017-02-19e-RC3 (2017/11/14)
 
@@ -14,4 +26,4 @@
 
 ## 2017-02-19e-RC1 (2017/09/23)
 
-* Initial version
+* Initial version based on DokuWiki 2017-02-19e "Frusterick Manners"

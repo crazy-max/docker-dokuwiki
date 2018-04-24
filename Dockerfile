@@ -16,35 +16,41 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.schema-version="1.0"
 
 RUN apk --update --no-cache add \
-  php7 php7-openssl php7-zlib php7-mbstring php7-fpm php7-gd php7-session php7-xml nginx \
-  supervisor curl tar \
-  && rm -rf /var/cache/apk/*
+    libgd nginx supervisor tar tzdata \
+    php7 php7-cli php7-ctype php7-curl php7-fpm php7-gd php7-imagick php7-json php7-mbstring php7-openssl \
+    php7-session php7-xml php7-zip php7-zlib \
+  && rm -rf /var/cache/apk/* /var/www/* /tmp/*
 
-ENV DOKUWIKI_VERSION="2017-02-19e" \
-  MD5_CHECKSUM="09bf175f28d6e7ff2c2e3be60be8c65f"
+ENV DOKUWIKI_VERSION="2018-04-22" \
+  DOKUWIKI_MD5="cec26670452f0122807d4f812432df4d"
 
-RUN mkdir -p /run/nginx \
-  && mkdir -p /var/www \
-  && cd /var/www \
-  && curl -O -L "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz" \
-  && tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 \
-  && rm "dokuwiki-$DOKUWIKI_VERSION.tgz"
+RUN apk --update --no-cache add -t build-dependencies \
+    gnupg wget \
+  && cd /tmp \
+  && wget -q "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz" \
+  && echo "$DOKUWIKI_MD5  /tmp/dokuwiki-$DOKUWIKI_VERSION.tgz" | md5sum -c - | grep OK \
+  && tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 -C /var/www \
+  && apk del build-dependencies \
+  && rm -rf  /root/.gnupg /tmp/* /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh
 ADD assets /
 
-RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php7/php-fpm.ini \
-  && sed -i -e "s|;daemonize\s*=\s*yes|daemonize = no|g" /etc/php7/php-fpm.conf \
-  && sed -i -e "s|listen\s*=\s*127\.0\.0\.1:9000|listen = /var/run/php-fpm7.sock|g" /etc/php7/php-fpm.d/www.conf \
-  && sed -i -e "s|;listen\.owner\s*=\s*\w*|listen.owner = nginx|g" /etc/php7/php-fpm.d/www.conf \
-  && sed -i -e "s|;listen\.group\s*=\s*\w*|listen.group = nginx|g" /etc/php7/php-fpm.d/www.conf \
-  && sed -i -e "s|user\s*=\s*\w*|user = nginx|g" /etc/php7/php-fpm.d/www.conf \
-  && sed -i -e "s|;listen\.mode\s*=\s*|listen.mode = |g" /etc/php7/php-fpm.d/www.conf \
-  && chmod a+x /entrypoint.sh
+RUN mkdir -p /var/log/supervisord \
+  && chmod a+x /entrypoint.sh \
+  && chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/tmp/nginx /var/www
 
 EXPOSE 80
-VOLUME [ "/var/www/conf", "/var/www/data/attic", "/var/www/data/media", "/var/www/data/media_attic", "/var/www/data/media_meta", "/var/www/data/meta", "/var/www/data/pages", "/var/www/lib/plugins", "/var/www/lib/tpl" ]
-
 WORKDIR "/var/www"
+VOLUME [ "/var/www/conf", \
+  "/var/www/data/attic", \
+  "/var/www/data/media", \
+  "/var/www/data/media_attic", \
+  "/var/www/data/media_meta", \
+  "/var/www/data/meta", \
+  "/var/www/data/pages", \
+  "/var/www/lib/plugins", \
+  "/var/www/lib/tpl" ]
+
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]

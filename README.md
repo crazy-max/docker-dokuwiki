@@ -15,25 +15,62 @@
 🐳 [DokuWiki](https://www.dokuwiki.org/dokuwiki) Docker image based on Alpine Linux and Nginx.<br />
 If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 🐳 Docker images!
 
-* Alpine Linux 3.7
-* DokuWiki 2017-02-19e
-* Nginx
-* PHP 7
-* Supervisord
+## Features
 
-## Usage
+### Included
+
+* Alpine Linux 3.7, Nginx, PHP 7.1
+* Tarball authenticity checked during building process
+* OPCache enabled to store precompiled script bytecode in shared memory
+
+### From docker-compose
+
+* [Traefik](https://github.com/containous/traefik-library-image) as reverse proxy and creation/renewal of Let's Encrypt certificates
+
+## Docker
+
+### Environment variables
+
+* `TZ` : The timezone assigned to the container (default to `UTC`)
+* `MEMORY_LIMIT` : PHP memory limit (default to `256M`)
+* `UPLOAD_MAX_SIZE` : Upload max size (default to `16M`)
+* `OPCACHE_MEM_SIZE` : PHP OpCache memory consumption (default to `128`)
+
+### Volumes
+
+* `/var/www/conf`
+* `/var/www/data/attic`
+* `/var/www/data/media`
+* `/var/www/data/media_attic`
+* `/var/www/data/media_meta`
+* `/var/www/data/meta`
+* `/var/www/data/pages`
+* `/var/www/lib/plugins`
+* `/var/www/lib/tpl`
+
+### Ports
+
+* `80` : HTTP port
+
+## Use this image
+
+### Docker Compose
 
 Docker compose is the recommended way to run this image. You can use the following [docker compose template](docker-compose.yml), then run the container :
 
 ```bash
-$ docker-compose up -d
+touch acme.json
+chmod 600 acme.json
+docker-compose up -d
+docker-compose logs -f
 ```
 
-Or use the following command:
+### Command line
+
+You can also use the following minimal command :
 
 ```bash
 $ docker run -d -p 8000:80 --name dokuwiki \
-  -e TZ="Europe/Paris" \
   -v $(pwd)/conf:/var/www/conf \
   -v $(pwd)/data/attic:/var/www/data/attic \
   -v $(pwd)/data/media:/var/www/data/media \
@@ -43,6 +80,15 @@ $ docker run -d -p 8000:80 --name dokuwiki \
   -v $(pwd)/data/lib/plugins:/var/www/data/lib/plugins \
   -v $(pwd)/data/lib/tpl:/var/www/data/lib/tpl \
   crazymax/dokuwiki:latest
+```
+
+## Upgrade
+
+You can upgrade DokuWiki automatically through the UI, it works well. But i recommend to recreate the container whenever i push an update :
+
+```bash
+docker-compose pull
+docker-compose up -d
 ```
 
 ## How can i help ?
