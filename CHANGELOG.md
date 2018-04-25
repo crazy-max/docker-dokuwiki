@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-04-22-RC2 (2018/04/25)
+
+* Manage data, conf, plugins and templates in an unique folder (`/data`)
+* Bug during first installation
+
 ## 2018-04-22-RC1 (2018/04/24)
 
 * Upgrade to DokuWiki 2018-04-22 "Greebo"

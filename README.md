@@ -22,6 +22,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 * Alpine Linux 3.7, Nginx, PHP 7.1
 * Tarball authenticity checked during building process
 * OPCache enabled to store precompiled script bytecode in shared memory
+* Data, configuration, plugins and templates are stored in an unique folder
 
 ### From docker-compose
 
@@ -38,15 +39,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 ### Volumes
 
-* `/var/www/conf`
-* `/var/www/data/attic`
-* `/var/www/data/media`
-* `/var/www/data/media_attic`
-* `/var/www/data/media_meta`
-* `/var/www/data/meta`
-* `/var/www/data/pages`
-* `/var/www/lib/plugins`
-* `/var/www/lib/tpl`
+* `/data` : Contains configuration, plugins, templates and data
 
 ### Ports
 
@@ -70,16 +63,8 @@ docker-compose logs -f
 You can also use the following minimal command :
 
 ```bash
-$ docker run -d -p 8000:80 --name dokuwiki \
-  -v $(pwd)/conf:/var/www/conf \
-  -v $(pwd)/data/attic:/var/www/data/attic \
-  -v $(pwd)/data/media:/var/www/data/media \
-  -v $(pwd)/data/media_attic:/var/www/data/media_attic \
-  -v $(pwd)/data/media_meta:/var/www/data/media_meta \
-  -v $(pwd)/data/meta:/var/www/data/meta \
-  -v $(pwd)/data/pages:/var/www/data/pages \
-  -v $(pwd)/lib/plugins:/var/www/data/lib/plugins \
-  -v $(pwd)/lib/tpl:/var/www/data/lib/tpl \
+$ docker run -d -p 80:80 --name dokuwiki \
+  -v $(pwd)/data:/data \
   crazymax/dokuwiki:latest
 ```
 

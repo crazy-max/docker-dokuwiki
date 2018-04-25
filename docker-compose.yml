@@ -36,15 +36,7 @@ services:
     image: crazymax/dokuwiki:latest
     container_name: dokuwiki
     volumes:
-      - ./conf:/var/www/conf
-      - ./data/attic:/var/www/data/attic
-      - ./data/media:/var/www/data/media
-      - ./data/media_attic:/var/www/data/media_attic
-      - ./data/media_meta:/var/www/data/media_meta
-      - ./data/meta:/var/www/data/meta
-      - ./data/pages:/var/www/data/pages
-      - ./lib/plugins:/var/www/lib/plugins
-      - ./lib/tpl:/var/www/lib/tpl
+      - ./data:/data
     labels:
       - traefik.enable=true
       - traefik.backend=dokuwiki

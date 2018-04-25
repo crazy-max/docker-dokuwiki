@@ -16,7 +16,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.schema-version="1.0"
 
 RUN apk --update --no-cache add \
-    libgd nginx supervisor tar tzdata \
+    inotify-tools libgd nginx supervisor tar tzdata \
     php7 php7-cli php7-ctype php7-curl php7-fpm php7-gd php7-imagick php7-json php7-mbstring php7-openssl \
     php7-session php7-xml php7-zip php7-zlib \
   && rm -rf /var/cache/apk/* /var/www/* /tmp/*
@@ -37,20 +37,12 @@ ADD entrypoint.sh /entrypoint.sh
 ADD assets /
 
 RUN mkdir -p /var/log/supervisord \
-  && chmod a+x /entrypoint.sh \
+  && chmod a+x /entrypoint.sh /usr/local/bin/* \
   && chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/tmp/nginx /var/www
 
 EXPOSE 80
 WORKDIR "/var/www"
-VOLUME [ "/var/www/conf", \
-  "/var/www/data/attic", \
-  "/var/www/data/media", \
-  "/var/www/data/media_attic", \
-  "/var/www/data/media_meta", \
-  "/var/www/data/meta", \
-  "/var/www/data/pages", \
-  "/var/www/lib/plugins", \
-  "/var/www/lib/tpl" ]
+VOLUME [ "/data" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
