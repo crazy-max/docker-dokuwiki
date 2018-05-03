@@ -21,8 +21,8 @@ RUN apk --update --no-cache add \
     php7-session php7-xml php7-zip php7-zlib \
   && rm -rf /var/cache/apk/* /var/www/* /tmp/*
 
-ENV DOKUWIKI_VERSION="2018-04-22" \
-  DOKUWIKI_MD5="cec26670452f0122807d4f812432df4d"
+ENV DOKUWIKI_VERSION="2018-04-22a" \
+  DOKUWIKI_MD5="18765a29508f96f9882349a304bffc03"
 
 RUN apk --update --no-cache add -t build-dependencies \
     gnupg wget \

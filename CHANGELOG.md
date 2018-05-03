@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22a-RC1 (2018/05/03)
+
+* Upgrade to DokuWiki 2018-04-22a
+
 ## 2018-04-22-RC2 (2018/04/25)
 
 * Manage data, conf, plugins and templates in an unique folder (`/data`)
