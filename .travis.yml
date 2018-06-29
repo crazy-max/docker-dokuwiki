@@ -11,8 +11,6 @@ env:
     - DOCKER_REPONAME=dokuwiki
     - QUAY_USERNAME=crazymax
     - QUAY_REPONAME=dokuwiki
-    - DOCKER_VERSION=17.12.0~ce-0~ubuntu
-    - COMPOSE_VERSION=1.18.0
     - MICROBADGER_HOOK=https://hooks.microbadger.com/images/crazymax/dokuwiki/cHV4g-ZhqTyuLtWXo9_4Mr1TNcE=
     - secure: icgx67zegohE1xYguBsNvHof0RvZKH6PUFnqEdhbjUIJRFoqk8G4eHtU6jUbV6bEm3j9AWd5BA9x//J5XHRzGRu/VNceB92SZHrGWSac4m7hguARN0ZeEKL09bp6b99/SqKZFnRk+fCx2Vm4vP/4lN12VtWnlfyFI6zg135n9T2I7Yd2c5vXCZDrNAodJ/Sl8l7t78gYe0DNhMwbZe55nLDcm6gh50BbmFODJxOECJPYw47k8uzR8blrzrwemYiLPhCSRjlbd15Wk6Fpqv5m6cUBY6dc6fdvZcPs8+pKAvXgM7ybDdgMfBBYrJ1h9JMlQCrQw3cZLFwj/hfEJB6hqZgy8ecJDjjHxyzxXSgha38Jkidq7fCNnGile4SguH2kxUyg4UY6Cn0gU2XH1hGmImaMpGadCmQ/8h/gcyT3n6HLgaA2o8wBuybX97nYmWasUm6ZXJEbz2OlBhvP6MQMkvEr8sJX1OHk7XW+LHYjrTJo4EjxptGtZuJx/9RRgxiWbSZcbxrhkC/NcZLrES3O3jvZJM+yI0XFH/qAKIPPcNdqCI0/GJaoE1KWOj5LAvgJiaU817aZI2bZdB+VBFqrnftNCB5Mk8VCaasXSsxNarR3WSrNYY/H0y6QD4xfaNfSaFRYPz9VHCDIt7gEyR77iMjEtBONUhp7VS+0JdOxtvo= # DOCKER_PASSWORD
     - secure: BUKbxckdrC1HciBcZlMh9YgqRHakV+El5zzpwoXsz+ia9CRWBFPkxxpRlo1nZ8q181Zxs4n4tEHHl/d1dQBA5mh+BrkTV9SF88eVRkDUEWqA7+zXiuzh2gh81qbeW5GoGT1RYy1U8pHHET9Tgvy61a/V7GfLB5N//zCZrsBNuLY5oZ85itJLfl34PTxQUBDbUgpWMW3j7kxSpgx6d3/TSDsxYoke3WxdByMG95HFvCO2a3b084z45uiJLTRKZxj/NSvY6FPjk6jbqPl+9gRxl2AFlJQdo3yTKNJFR7SF/ef95dlwznOJ3FQU0DX+HlO81Bo4lSDELvqrnue3K+lx16eic2zQNg88cKmuYNQxLq6gex667FGPqDnJo4lgi1wXlZLrC9lmTgYBQTXf7sD0yI0IcMnpE1QA7Jvfcb+d/WXoNg/n9m33UI7xC8Q843OT+WIu/gxpnDvTJOiP/60vvnsaDpDKDcvrOaMAdalesGUMivUGtbzoqrtkxisHlXUORrM//ii431oqz3bQ0ypXs7V4ahao914hBSiltQsCBSumJGa73YiJjphS4SWX7nFkDeJMRiBBxn6mpUduEDQ3SesAGOSST91ki5t1jRBzCQex/y6ERluw1aVGbEv7kCeRNk9SUXj8GpYHSyPfvGqYqP1kIqzcg5kQUyW9OHEWiqs= # QUAY_PASSWORD
@@ -20,13 +18,7 @@ env:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-cache madison docker-ce
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce=${DOCKER_VERSION}
   - docker --version
-  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - docker-compose --version
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - export DOCKER_TAG=$(if [ "$BRANCH" == "master" ]; then echo "latest"; else echo $BRANCH; fi)
   - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH, DOCKER_TAG=$DOCKER_TAG"
