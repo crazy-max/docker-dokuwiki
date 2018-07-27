@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-04-22a-RC2 (2018/07/28)
+
+* Alpine Linux 3.8
+* PHP 7.2
+
 ## 2018-04-22a-RC1 (2018/05/03)
 
 * Upgrade to DokuWiki 2018-04-22a

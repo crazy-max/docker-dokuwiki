@@ -18,7 +18,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 ### Included
 
-* Alpine Linux 3.7, Nginx, PHP 7.1
+* Alpine Linux 3.8, Nginx, PHP 7.2
 * Tarball authenticity checked during building process
 * OPCache enabled to store precompiled script bytecode in shared memory
 * Data, configuration, plugins and templates are stored in an unique folder
@@ -48,7 +48,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 ### Docker Compose
 
-Docker compose is the recommended way to run this image. You can use the following [docker compose template](docker-compose.yml), then run the container :
+Docker compose is the recommended way to run this image. You can use the following [docker compose template](examples/compose/docker-compose.yml), then run the container :
 
 ```bash
 touch acme.json
