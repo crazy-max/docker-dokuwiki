@@ -31,10 +31,12 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 ### Environment variables
 
-* `TZ` : The timezone assigned to the container (default to `UTC`)
-* `MEMORY_LIMIT` : PHP memory limit (default to `256M`)
-* `UPLOAD_MAX_SIZE` : Upload max size (default to `16M`)
-* `OPCACHE_MEM_SIZE` : PHP OpCache memory consumption (default to `128`)
+| Key                         | Default           | Description                               
+|-----------------------------|-------------------|-------------------------------------------
+| `TZ`                        | `UTC`             | Timezone (e.g. `Europe/Paris`)
+| `MEMORY_LIMIT`              | `256M`            | PHP memory limit
+| `UPLOAD_MAX_SIZE`           | `16M`             | Upload max size
+| `OPCACHE_MEM_SIZE`          | `128`             | PHP OpCache memory consumption
 
 ### Volumes
 
