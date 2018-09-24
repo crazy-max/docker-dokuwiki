@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-04-22a-RC3 (2018/09/25)
+
+* Update from upstream
+* Dockerfile maintainer deprecated
+
 ## 2018-04-22a-RC2 (2018/07/28)
 
 * Alpine Linux 3.8
