@@ -4,10 +4,10 @@ function runas_nginx() {
   su - nginx -s /bin/sh -c "$1"
 }
 
-TZ=${TZ:-"UTC"}
-MEMORY_LIMIT=${MEMORY_LIMIT:-"256M"}
-UPLOAD_MAX_SIZE=${UPLOAD_MAX_SIZE:-"16M"}
-OPCACHE_MEM_SIZE=${OPCACHE_MEM_SIZE:-"128"}
+TZ=${TZ:-UTC}
+MEMORY_LIMIT=${MEMORY_LIMIT:-256M}
+UPLOAD_MAX_SIZE=${UPLOAD_MAX_SIZE:-16M}
+OPCACHE_MEM_SIZE=${OPCACHE_MEM_SIZE:-128}
 
 # Timezone
 echo "Setting timezone to ${TZ}..."

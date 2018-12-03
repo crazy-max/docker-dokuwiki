@@ -17,11 +17,11 @@ QUAY_LOGIN=${QUAY_LOGIN:="crazymax"}
 QUAY_REPONAME=${QUAY_REPONAME:="dokuwiki"}
 
 # Check local or travis
-BRANCH=${TRAVIS_BRANCH:-"local"}
+BRANCH=${TRAVIS_BRANCH:-local}
 if [[ ${TRAVIS_PULL_REQUEST} == "true" ]]; then
   BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
 fi
-DOCKER_TAG=${BRANCH:-"local"}
+DOCKER_TAG=${BRANCH:-local}
 if [[ "$BRANCH" == "master" ]]; then
   DOCKER_TAG=latest
 elif [[ "$BRANCH" == "local" ]]; then
@@ -71,6 +71,7 @@ while read LOGLINE; do
   fi
   if [[ $SECONDS -gt ${TIMEOUT} ]]; then
     >&2 echo "ERROR: Failed to run ${PROJECT} container"
+    docker rm -f $(docker ps -a -q) || true
     exit 1
   fi
 done < <(docker logs -f ${PROJECT})
@@ -78,6 +79,7 @@ echo
 
 if [ "${VERSION}" == "local" -o "${TRAVIS_PULL_REQUEST}" == "true" ]; then
   echo "INFO: This is a PR or a local build, skipping push..."
+  docker rm -f $(docker ps -a -q) || true
   exit 0
 fi
 if [[ ! -z ${DOCKER_PASSWORD} ]]; then
@@ -109,3 +111,5 @@ if [[ ! -z ${QUAY_PASSWORD} ]]; then
   docker push quay.io/${QUAY_USERNAME}/${QUAY_REPONAME}
   echo
 fi
+
+docker rm -f $(docker ps -a -q) || true

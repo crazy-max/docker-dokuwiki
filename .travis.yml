@@ -6,8 +6,10 @@ services:
 env:
   global:
     - VERSION=2018-04-22a
+    - DOCKER_LOGIN=crazymax
     - DOCKER_USERNAME=crazymax
     - DOCKER_REPONAME=dokuwiki
+    - QUAY_LOGIN=crazymax
     - QUAY_USERNAME=crazymax
     - QUAY_REPONAME=dokuwiki
     - MICROBADGER_HOOK=https://hooks.microbadger.com/images/crazymax/dokuwiki/cHV4g-ZhqTyuLtWXo9_4Mr1TNcE=
