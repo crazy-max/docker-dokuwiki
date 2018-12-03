@@ -65,21 +65,21 @@ echo "### Waiting for ${PROJECT} to be up..."
 TIMEOUT=$((SECONDS + RUNNING_TIMEOUT))
 while read LOGLINE; do
   echo ${LOGLINE}
-  if [[ "${LOGLINE#*$RUNNING_LOG_CHECK}" != "$LOGLINE" ]]; then
+  if [[ ${LOGLINE} == *"${RUNNING_LOG_CHECK}"* ]]; then
     echo "Container up!"
     break
   fi
   if [[ $SECONDS -gt ${TIMEOUT} ]]; then
     >&2 echo "ERROR: Failed to run ${PROJECT} container"
-    docker rm -f $(docker ps -a -q) || true
+    docker rm -f ${PROJECT} > /dev/null 2>&1 || true
     exit 1
   fi
-done < <(docker logs -f ${PROJECT})
+done < <(docker logs -f ${PROJECT} 2>&1)
+docker rm -f ${PROJECT} > /dev/null 2>&1 || true
 echo
 
 if [ "${VERSION}" == "local" -o "${TRAVIS_PULL_REQUEST}" == "true" ]; then
   echo "INFO: This is a PR or a local build, skipping push..."
-  docker rm -f $(docker ps -a -q) || true
   exit 0
 fi
 if [[ ! -z ${DOCKER_PASSWORD} ]]; then
@@ -111,5 +111,3 @@ if [[ ! -z ${QUAY_PASSWORD} ]]; then
   docker push quay.io/${QUAY_USERNAME}/${QUAY_REPONAME}
   echo
 fi
-
-docker rm -f $(docker ps -a -q) || true
