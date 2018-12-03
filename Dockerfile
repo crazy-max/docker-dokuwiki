@@ -52,14 +52,14 @@ RUN apk --update --no-cache add -t build-dependencies \
   && chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/tmp/nginx /var/www \
   && rm -rf  /root/.gnupg /tmp/* /var/cache/apk/*
 
-ADD entrypoint.sh /entrypoint.sh
-ADD assets /
+COPY entrypoint.sh /entrypoint.sh
+COPY assets /
 
 RUN mkdir -p /var/log/supervisord \
   && chmod a+x /entrypoint.sh /usr/local/bin/*
 
 EXPOSE 80
-WORKDIR "/var/www"
+WORKDIR /var/www
 VOLUME [ "/data" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
