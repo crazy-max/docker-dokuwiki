@@ -4,17 +4,19 @@ set -e
 PROJECT=dokuwiki
 BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 BUILD_TAG=docker_build
+BUILD_WORKINGDIR=${BUILD_WORKINGDIR:-.}
+DOCKERFILE=${DOCKERFILE:-Dockerfile}
 VCS_REF=${TRAVIS_COMMIT::8}
 RUNNING_TIMEOUT=120
 RUNNING_LOG_CHECK="watch_folders entered RUNNING state"
 
 PUSH_LATEST=${PUSH_LATEST:-true}
-DOCKER_USERNAME=${DOCKER_USERNAME:="crazymax"}
-DOCKER_LOGIN=${DOCKER_LOGIN:="crazymax"}
-DOCKER_REPONAME=${DOCKER_REPONAME:="dokuwiki"}
-QUAY_USERNAME=${QUAY_USERNAME:="crazymax"}
-QUAY_LOGIN=${QUAY_LOGIN:="crazymax"}
-QUAY_REPONAME=${QUAY_REPONAME:="dokuwiki"}
+DOCKER_USERNAME=${DOCKER_USERNAME:-crazymax}
+DOCKER_LOGIN=${DOCKER_LOGIN:-crazyma}
+DOCKER_REPONAME=${DOCKER_REPONAME:-dokuwiki}
+QUAY_USERNAME=${QUAY_USERNAME:-crazymax}
+QUAY_LOGIN=${QUAY_LOGIN:-crazymax}
+QUAY_REPONAME=${QUAY_REPONAME:-dokuwiki}
 
 # Check local or travis
 BRANCH=${TRAVIS_BRANCH:-local}
@@ -53,11 +55,11 @@ docker build \
   --build-arg BUILD_DATE=${BUILD_DATE} \
   --build-arg VCS_REF=${VCS_REF} \
   --build-arg VERSION=${VERSION} \
-  -t ${BUILD_TAG} .
+  -t ${BUILD_TAG} -f ${DOCKERFILE} ${BUILD_WORKINGDIR}
 echo
 
 echo "### Test"
-docker rm -f ${PROJECT} || true
+docker rm -f ${PROJECT} > /dev/null 2>&1 || true
 docker run -d --name ${PROJECT} ${BUILD_TAG}
 echo
 
