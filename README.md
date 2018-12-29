@@ -43,7 +43,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 ### Ports
 
-* `80` : HTTP port
+* `8000` : HTTP port
 
 ## Use this image
 
@@ -63,7 +63,7 @@ docker-compose logs -f
 You can also use the following minimal command :
 
 ```bash
-$ docker run -d -p 80:80 --name dokuwiki \
+$ docker run -d -p 8000:8000 --name dokuwiki \
   -v $(pwd)/data:/data \
   crazymax/dokuwiki:latest
 ```

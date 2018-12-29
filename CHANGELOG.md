@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22a-RC4 (2018/12/29)
+
+* Bind to unprivileged port : `8000`
+
 ## 2018-04-22a-RC3 (2018/09/25)
 
 * Update from upstream

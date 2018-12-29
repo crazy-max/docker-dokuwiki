@@ -58,7 +58,7 @@ COPY assets /
 RUN mkdir -p /var/log/supervisord \
   && chmod a+x /entrypoint.sh /usr/local/bin/*
 
-EXPOSE 80
+EXPOSE 8000
 WORKDIR /var/www
 VOLUME [ "/data" ]
 
