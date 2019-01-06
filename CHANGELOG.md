@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC1 (2019/01/06)
+
+* Upgrade to DokuWiki 2018-04-22b
+
 ## 2018-04-22a-RC4 (2018/12/29)
 
 * Bind to unprivileged port : `8000`

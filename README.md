@@ -63,7 +63,7 @@ docker-compose logs -f
 You can also use the following minimal command :
 
 ```bash
-$ docker run -d -p 8000:8000 --name dokuwiki \
+docker run -d -p 8000:8000 --name dokuwiki \
   -v $(pwd)/data:/data \
   crazymax/dokuwiki:latest
 ```
