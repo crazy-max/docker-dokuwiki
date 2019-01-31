@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC2 (2019/01/31)
+
+* Alpine Linux 3.9
+
 ## 2018-04-22b-RC1 (2019/01/06)
 
 * Upgrade to DokuWiki 2018-04-22b
