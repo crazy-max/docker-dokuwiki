@@ -10,7 +10,7 @@
 
 ## 2018-04-22b-RC1 (2019/01/06)
 
-* Upgrade to DokuWiki 2018-04-22b
+* DokuWiki 2018-04-22b
 
 ## 2018-04-22a-RC4 (2018/12/29)
 
@@ -28,7 +28,7 @@
 
 ## 2018-04-22a-RC1 (2018/05/03)
 
-* Upgrade to DokuWiki 2018-04-22a
+* DokuWiki 2018-04-22a
 
 ## 2018-04-22-RC2 (2018/04/25)
 
@@ -37,7 +37,7 @@
 
 ## 2018-04-22-RC1 (2018/04/24)
 
-* Upgrade to DokuWiki 2018-04-22 "Greebo"
+* DokuWiki 2018-04-22 "Greebo"
 * Improve Nginx configuration
 * Permissions fix
 * Add Traefik (see docker-compose)
@@ -49,7 +49,7 @@
 
 ## 2017-02-19e-RC4 (2018/01/10)
 
-* Upgrade to Alpine 3.7
+* Alpine Linux 3.7
 
 ## 2017-02-19e-RC3 (2017/11/14)
 
