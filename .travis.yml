@@ -21,3 +21,10 @@ before_install:
   - docker --version
 
 script: ./build.sh
+
+notifications:
+  email:
+    recipients:
+      - travisci@crazymax.dev
+    on_success: always
+    on_failure: always
