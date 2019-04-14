@@ -42,6 +42,6 @@ services:
       - "traefik.backend=dokuwiki"
       - "traefik.port=8000"
       - "traefik.frontend.rule=Host:dokuwiki.example.com"
-    environment:
-      - "TZ=Europe/Paris"
+    env_file:
+      - "./dokuwiki.env"
     restart: always

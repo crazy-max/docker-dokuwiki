@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC3 (2019/04/14)
+
+* Add `REAL_IP_FROM`, `REAL_IP_HEADER` and `LOG_IP_VAR` environment variables
+
 ## 2018-04-22b-RC2 (2019/01/31)
 
 * Alpine Linux 3.9
