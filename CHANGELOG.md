@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC5 (2019/06/23)
+
+* Alpine Linux 3.10
+
 ## 2018-04-22b-RC4 (2019/04/28)
 
 * Add `large_client_header_buffers` Nginx config
