@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-04-22b-RC6 (2019/08/04)
+
+* Add healthcheck
+* Remove php-fpm access log (already mirrored by nginx)
+
 ## 2018-04-22b-RC5 (2019/06/23)
 
 * Alpine Linux 3.10

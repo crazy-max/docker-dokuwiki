@@ -16,6 +16,7 @@ LABEL maintainer="CrazyMax" \
   org.label-schema.schema-version="1.0"
 
 RUN apk --update --no-cache add \
+    curl \
     inotify-tools \
     libgd \
     nginx \
@@ -64,3 +65,6 @@ VOLUME [ "/data" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
+
+HEALTHCHECK --interval=10s --timeout=5s \
+  CMD curl --fail http://127.0.0.1:12345/ping || exit 1
