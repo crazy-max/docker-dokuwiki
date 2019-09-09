@@ -28,6 +28,7 @@ RUN apk --update --no-cache add \
     php7-gd \
     php7-imagick \
     php7-json \
+    php7-ldap \
     php7-mbstring \
     php7-openssl \
     php7-session \
