@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC7 (2019/09/09)
+
+* Add LDAP PHP extension
+
 ## 2018-04-22b-RC6 (2019/08/04)
 
 * Add healthcheck
