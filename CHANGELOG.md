@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC8 (2019/09/10)
+
+* Add sqlite3 PHP extension
+
 ## 2018-04-22b-RC7 (2019/09/09)
 
 * Add LDAP PHP extension
