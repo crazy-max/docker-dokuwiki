@@ -1,19 +1,20 @@
-FROM alpine:3.10
+# syntax=docker/dockerfile:experimental
+FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.10
 
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+RUN printf "I am running on ${BUILDPLATFORM:-linux/amd64}, building for ${TARGETPLATFORM:-linux/amd64}\n$(uname -a)\n"
 
 LABEL maintainer="CrazyMax" \
-  org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.name="dokuwiki" \
   org.label-schema.description="DokuWiki" \
-  org.label-schema.version=$VERSION \
   org.label-schema.url="https://github.com/crazy-max/docker-dokuwiki" \
-  org.label-schema.vcs-ref=$VCS_REF \
   org.label-schema.vcs-url="https://github.com/crazy-max/docker-dokuwiki" \
   org.label-schema.vendor="CrazyMax" \
   org.label-schema.schema-version="1.0"
+
+ENV DOKUWIKI_VERSION="2018-04-22b" \
+  DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255"
 
 RUN apk --update --no-cache add \
     curl \
@@ -39,12 +40,7 @@ RUN apk --update --no-cache add \
     supervisor \
     tar \
     tzdata \
-  && rm -rf /var/cache/apk/* /var/www/* /tmp/*
-
-ENV DOKUWIKI_VERSION="2018-04-22b" \
-  DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255"
-
-RUN apk --update --no-cache add -t build-dependencies \
+  && apk --update --no-cache add -t build-dependencies \
     gnupg \
     wget \
   && cd /tmp \
