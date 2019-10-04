@@ -14,7 +14,8 @@ LABEL maintainer="CrazyMax" \
   org.label-schema.schema-version="1.0"
 
 ENV DOKUWIKI_VERSION="2018-04-22b" \
-  DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255"
+  DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255" \
+  TZ="UTC"
 
 RUN apk --update --no-cache add \
     curl \

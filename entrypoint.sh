@@ -4,18 +4,12 @@ function runas_nginx() {
   su - nginx -s /bin/sh -c "$1"
 }
 
-TZ=${TZ:-UTC}
 MEMORY_LIMIT=${MEMORY_LIMIT:-256M}
 UPLOAD_MAX_SIZE=${UPLOAD_MAX_SIZE:-16M}
 OPCACHE_MEM_SIZE=${OPCACHE_MEM_SIZE:-128}
 REAL_IP_FROM=${REAL_IP_FROM:-0.0.0.0/32}
 REAL_IP_HEADER=${REAL_IP_HEADER:-X-Forwarded-For}
 LOG_IP_VAR=${LOG_IP_VAR:-remote_addr}
-
-# Timezone
-echo "Setting timezone to ${TZ}..."
-ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime
-echo ${TZ} > /etc/timezone
 
 # PHP
 echo "Setting PHP-FPM configuration..."
