@@ -1,5 +1,23 @@
 # Changelog
 
+## 2018-04-22b-RC9 (2019/10/05)
+
+* Multi-platform Docker image
+* Switch to GitHub Actions
+* :warning: Stop publishing Docker image on Quay
+* :warning: Run as non-root user
+* Prevent exposing nginx version
+* Set timezone through tzdata
+
+> :warning: **UPGRADE NOTES**
+> As the Docker container now runs as a non-root user, you have to first stop the container and change permissions to `data` volume:
+> ```
+> docker-compose stop
+> chown -R 1500:1500 data/
+> docker-compose pull
+> docker-compose up -d
+> ```
+
 ## 2018-04-22b-RC8 (2019/09/10)
 
 * Add sqlite3 PHP extension
