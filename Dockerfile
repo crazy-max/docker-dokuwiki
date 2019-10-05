@@ -41,7 +41,9 @@ RUN apk --update --no-cache add \
     supervisor \
     tar \
     tzdata \
-  && apk --update --no-cache add -t build-dependencies \
+  && rm -rf /tmp/* /var/cache/apk/*
+
+RUN apk --update --no-cache add -t build-dependencies \
     gnupg \
     wget \
   && cd /tmp \
@@ -49,13 +51,13 @@ RUN apk --update --no-cache add \
   && echo "$DOKUWIKI_MD5  /tmp/dokuwiki-$DOKUWIKI_VERSION.tgz" | md5sum -c - | grep OK \
   && tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 -C /var/www \
   && apk del build-dependencies \
-  && chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/tmp/nginx /var/www \
   && rm -rf  /root/.gnupg /tmp/* /var/cache/apk/*
 
 COPY entrypoint.sh /entrypoint.sh
 COPY assets /
 
 RUN mkdir -p /var/log/supervisord \
+  && chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/tmp/nginx /var/www \
   && chmod a+x /entrypoint.sh /usr/local/bin/*
 
 EXPOSE 8000
