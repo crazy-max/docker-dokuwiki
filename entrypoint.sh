@@ -1,9 +1,5 @@
 #!/bin/sh
 
-function runas_nginx() {
-  su - nginx -s /bin/sh -c "$1"
-}
-
 MEMORY_LIMIT=${MEMORY_LIMIT:-256M}
 UPLOAD_MAX_SIZE=${UPLOAD_MAX_SIZE:-16M}
 OPCACHE_MEM_SIZE=${OPCACHE_MEM_SIZE:-128}
@@ -36,11 +32,9 @@ mkdir -p /data/plugins /data/tpl
 
 echo "Adding preload.php..."
 cp -f /tpls/preload.php /var/www/inc/
-chown nginx. /var/www/inc/preload.php
 
 echo "Copying global config..."
 cp -Rf /var/www/conf /data/
-chown -R nginx. /data/conf
 
 firstInstall=0
 if [ ! -f /data/conf/local.protected.php ]; then
@@ -52,7 +46,6 @@ fi
 if [ ! -d /data/data ]; then
   echo "Creating initial data folder..."
   cp -Rf /var/www/data /data/
-  chown -R nginx. /data/data
 fi
 
 echo "Bootstrapping configuration..."
@@ -61,7 +54,6 @@ cat > /data/conf/local.protected.php <<EOL
 
 \$conf['savedir'] = '/data/data';
 EOL
-chown nginx. /data/conf/local.protected.php
 
 echo -n "Saving bundled plugins list..."
 bundledPlugins=$(ls -d /var/www/lib/plugins/*/ | cut -f6 -d'/')
@@ -85,7 +77,6 @@ for userPlugin in ${userPlugins}; do
     continue
   fi
   ln -sf /data/plugins/${userPlugin} /var/www/lib/plugins/${userPlugin}
-  chown -h nginx. /var/www/lib/plugins/${userPlugin}
 done
 
 echo "Checking user templates in /data/tpl..."
@@ -96,12 +87,7 @@ for userTpl in ${userTpls}; do
     continue
   fi
   ln -sf /data/tpl/${userTpl} /var/www/lib/tpl/${userTpl}
-  chown -h nginx. /var/www/lib/tpl/${userTpl}
 done
-
-# Fix perms
-echo "Fixing permissions..."
-chown -R nginx. /data
 
 # First install ?
 if [ ${firstInstall} -eq 1 ]; then
@@ -110,7 +96,7 @@ if [ ${firstInstall} -eq 1 ]; then
   echo ">>"
 else
   echo "Launching DokuWiki indexer..."
-  runas_nginx 'php7 /var/www/bin/indexer.php -c'
+  php7 /var/www/bin/indexer.php -c
 fi
 
 exec "$@"

@@ -38,6 +38,7 @@ RUN apk --update --no-cache add \
     php7-xml \
     php7-zip \
     php7-zlib \
+    shadow \
     supervisor \
     tar \
     tzdata \
@@ -51,14 +52,36 @@ RUN apk --update --no-cache add -t build-dependencies \
   && echo "$DOKUWIKI_MD5  /tmp/dokuwiki-$DOKUWIKI_VERSION.tgz" | md5sum -c - | grep OK \
   && tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 -C /var/www \
   && apk del build-dependencies \
-  && rm -rf  /root/.gnupg /tmp/* /var/cache/apk/*
+  && rm -rf /root/.gnupg /tmp/* /var/cache/apk/*
 
 COPY entrypoint.sh /entrypoint.sh
 COPY assets /
 
-RUN mkdir -p /var/log/supervisord \
-  && chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/tmp/nginx /var/www \
-  && chmod a+x /entrypoint.sh /usr/local/bin/*
+RUN chmod a+x /entrypoint.sh /usr/local/bin/* \
+  && addgroup -g 1500 dokuwiki \
+  && adduser -D -H -u 1500 -G dokuwiki -s /bin/sh dokuwiki \
+  && mkdir -p \
+    /data \
+    /var/log/supervisord \
+    /var/run/nginx \
+    /var/run/php-fpm \
+    /var/run/supervisord \
+  && chown -R dokuwiki. \
+    /data \
+    /etc/nginx \
+    /etc/php7 \
+    /tpls \
+    /var/lib/nginx \
+    /var/log/nginx \
+    /var/log/php7 \
+    /var/log/supervisord \
+    /var/run/nginx \
+    /var/run/php-fpm \
+    /var/run/supervisord \
+    /var/tmp/nginx \
+    /var/www
+
+USER dokuwiki
 
 EXPOSE 8000
 WORKDIR /var/www
