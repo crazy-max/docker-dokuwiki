@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC10 (2019/10/18)
+
+* Add `php7-simplexml` (PR #5)
+
 ## 2018-04-22b-RC9 (2019/10/05)
 
 * Multi-platform Docker image
