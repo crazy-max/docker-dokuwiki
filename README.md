@@ -17,6 +17,11 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 💡 Want to be notified of new releases? Check out 🔔 [Diun (Docker Image Update Notifier)](https://github.com/crazy-max/diun) project!
 
+## Features
+
+* Run as non-root user
+* Multi-platform image
+
 ## Docker
 
 ### Multi-platform image
