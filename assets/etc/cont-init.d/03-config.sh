@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/usr/bin/with-contenv sh
+
+runas_user() {
+  su-exec dokuwiki:dokuwiki "$@"
+}
 
 MEMORY_LIMIT=${MEMORY_LIMIT:-256M}
 UPLOAD_MAX_SIZE=${UPLOAD_MAX_SIZE:-16M}
@@ -28,13 +32,13 @@ sed -e "s/@UPLOAD_MAX_SIZE@/$UPLOAD_MAX_SIZE/g" \
 
 # DokuWiki
 echo "Initializing DokuWiki files / folders..."
-mkdir -p /data/plugins /data/tpl
+runas_user mkdir -p /data/plugins /data/tpl
 
 echo "Adding preload.php..."
 cp -f /tpls/preload.php /var/www/inc/
 
 echo "Copying global config..."
-cp -Rf /var/www/conf /data/
+runas_user cp -Rf /var/www/conf /data/
 
 firstInstall=0
 if [ ! -f /data/conf/local.protected.php ]; then
@@ -45,15 +49,16 @@ fi
 
 if [ ! -d /data/data ]; then
   echo "Creating initial data folder..."
-  cp -Rf /var/www/data /data/
+  runas_user cp -Rf /var/www/data /data/
 fi
 
 echo "Bootstrapping configuration..."
-cat > /data/conf/local.protected.php <<EOL
+runas_user cat > /data/conf/local.protected.php <<EOL
 <?php
 
 \$conf['savedir'] = '/data/data';
 EOL
+chown dokuwiki:dokuwiki /data/conf/local.protected.php
 
 echo -n "Saving bundled plugins list..."
 bundledPlugins=$(ls -d /var/www/lib/plugins/*/ | cut -f6 -d'/')
@@ -72,21 +77,21 @@ echo " $(wc -l < /tmp/bundledTpls.txt) found"
 echo "Checking user plugins in /data/plugins..."
 userPlugins=$(ls -l /data/plugins | egrep '^d' | awk '{print $9}')
 for userPlugin in ${userPlugins}; do
-  if [ -d /var/www/lib/plugins/${userPlugin} ]; then
+  if [ -d "/var/www/lib/plugins/${userPlugin}" ]; then
     echo "WARNING: Plugin ${userPlugin} will not be used (already bundled in DokuWiki)"
     continue
   fi
-  ln -sf /data/plugins/${userPlugin} /var/www/lib/plugins/${userPlugin}
+  ln -sf "/data/plugins/${userPlugin}" "/var/www/lib/plugins/${userPlugin}"
 done
 
 echo "Checking user templates in /data/tpl..."
 userTpls=$(ls -l /data/tpl | egrep '^d' | awk '{print $9}')
 for userTpl in ${userTpls}; do
-  if [ -d /var/www/lib/tpl/${userTpl} ]; then
+  if [ -d "/var/www/lib/tpl/${userTpl}" ]; then
     echo "WARNING: Template ${userTpl} will not be used (already bundled in DokuWiki)"
     continue
   fi
-  ln -sf /data/tpl/${userTpl} /var/www/lib/tpl/${userTpl}
+  ln -sf "/data/tpl/${userTpl}" "/var/www/lib/tpl/${userTpl}"
 done
 
 # First install ?
@@ -96,7 +101,5 @@ if [ ${firstInstall} -eq 1 ]; then
   echo ">>"
 else
   echo "Launching DokuWiki indexer..."
-  php7 /var/www/bin/indexer.php -c
+  runas_user php7 /var/www/bin/indexer.php -c
 fi
-
-exec "$@"

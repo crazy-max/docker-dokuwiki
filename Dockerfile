@@ -20,10 +20,6 @@ LABEL maintainer="CrazyMax" \
   org.label-schema.vendor="CrazyMax" \
   org.label-schema.schema-version="1.0"
 
-ENV DOKUWIKI_VERSION="2018-04-22b" \
-  DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255" \
-  TZ="UTC"
-
 RUN apk --update --no-cache add \
     curl \
     inotify-tools \
@@ -47,10 +43,18 @@ RUN apk --update --no-cache add \
     php7-zip \
     php7-zlib \
     shadow \
-    supervisor \
+    su-exec \
     tar \
     tzdata \
-  && rm -rf /tmp/* /var/cache/apk/*
+  && wget -q "https://github.com/just-containers/s6-overlay/releases/latest/download/s6-overlay-amd64.tar.gz" -qO "/tmp/s6-overlay-amd64.tar.gz" \
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
+  && rm -rf /tmp/* /var/cache/apk/* /var/www/*
+
+ENV DOKUWIKI_VERSION="2018-04-22b" \
+  DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255" \
+  TZ="UTC" \
+  PUID="1500" \
+  PGID="1500"
 
 RUN apk --update --no-cache add -t build-dependencies \
     gnupg \
@@ -62,41 +66,18 @@ RUN apk --update --no-cache add -t build-dependencies \
   && apk del build-dependencies \
   && rm -rf /root/.gnupg /tmp/* /var/cache/apk/*
 
-COPY entrypoint.sh /entrypoint.sh
 COPY assets /
 
-RUN chmod a+x /entrypoint.sh /usr/local/bin/* \
-  && addgroup -g 1500 dokuwiki \
-  && adduser -D -H -u 1500 -G dokuwiki -s /bin/sh dokuwiki \
-  && mkdir -p \
-    /data \
-    /var/log/supervisord \
-    /var/run/nginx \
-    /var/run/php-fpm \
-    /var/run/supervisord \
-  && chown -R dokuwiki. \
-    /data \
-    /etc/nginx \
-    /etc/php7 \
-    /tpls \
-    /var/lib/nginx \
-    /var/log/nginx \
-    /var/log/php7 \
-    /var/log/supervisord \
-    /var/run/nginx \
-    /var/run/php-fpm \
-    /var/run/supervisord \
-    /var/tmp/nginx \
-    /var/www
-
-USER dokuwiki
+RUN chmod a+x /usr/local/bin/* \
+  && addgroup -g ${PGID} dokuwiki \
+  && adduser -D -H -u ${PUID} -G dokuwiki -s /bin/sh dokuwiki \
+  && mkdir -p /data /var/run/nginx /var/run/php-fpm
 
 EXPOSE 8000
 WORKDIR /var/www
 VOLUME [ "/data" ]
 
-ENTRYPOINT [ "/entrypoint.sh" ]
-CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
+ENTRYPOINT [ "/init" ]
 
-HEALTHCHECK --interval=10s --timeout=5s \
+HEALTHCHECK --interval=10s --timeout=5s --start-period=20s \
   CMD curl --fail http://127.0.0.1:12345/ping || exit 1

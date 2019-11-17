@@ -45,6 +45,8 @@ Image: crazymax/dokuwiki:latest
 ### Environment variables
 
 * `TZ` : The timezone assigned to the container (default `UTC`)
+* `PUID` : Dokuwiki user id (default `1500`)
+* `PGID`: Dokuwiki group id (default `1500`)
 * `MEMORY_LIMIT` : PHP memory limit (default `256M`)
 * `UPLOAD_MAX_SIZE` : Upload max size (default `16M`)
 * `OPCACHE_MEM_SIZE` : PHP OpCache memory consumption (default `128`)
@@ -56,7 +58,7 @@ Image: crazymax/dokuwiki:latest
 
 * `/data` : Contains configuration, plugins, templates and data
 
-> :warning: Note that the volume should be owned by uid `1500` and gid `1500`. If you don't give the volume correct permissions, the container may not start.
+> :warning: Note that the volume should be owned by the user/group with the specified `PUID` and `PGID`. If you don't give the volume correct permissions, the container may not start.
 
 ### Ports
 

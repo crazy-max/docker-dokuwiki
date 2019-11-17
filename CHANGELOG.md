@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-04-22b-RC11 (2019/11/17)
+
+* Switch to [s6-overlay](https://github.com/just-containers/s6-overlay/) as a process supervisor
+* Add `PUID`/`PGID` vars
+
 ## 2018-04-22b-RC10 (2019/10/18)
 
 * Add `php7-simplexml` (PR #5)
