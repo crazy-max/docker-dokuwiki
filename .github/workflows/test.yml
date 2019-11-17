@@ -25,7 +25,7 @@ jobs:
           echo ::set-output name=build_tag::test
           echo ::set-output name=container_name::dokuwiki
           echo ::set-output name=running_timeout::120
-          echo ::set-output name=running_log_check::watch_folders entered RUNNING state
+          echo ::set-output name=running_log_check::ready to handle connections
       -
         # https://github.com/actions/checkout
         name: Checkout
