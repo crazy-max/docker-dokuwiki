@@ -21,6 +21,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 * Run as non-root user
 * Multi-platform image
+* [Traefik](https://github.com/containous/traefik-library-image) as reverse proxy and creation/renewal of Let's Encrypt certificates (see [this template](examples/traefik))
 
 ## Docker
 
@@ -68,11 +69,9 @@ Image: crazymax/dokuwiki:latest
 
 ### Docker Compose
 
-Docker compose is the recommended way to run this image. You can use the following [docker compose template](examples/compose/docker-compose.yml), then run the container :
+Docker compose is the recommended way to run this image. You can use the following [docker compose template](examples/compose/docker-compose.yml), then run the container:
 
 ```bash
-touch acme.json
-chmod 600 acme.json
 docker-compose up -d
 docker-compose logs -f
 ```
@@ -89,7 +88,7 @@ docker run -d -p 8000:8000 --name dokuwiki \
 
 ## Upgrade
 
-You can upgrade DokuWiki automatically through the UI, it works well. But i recommend to recreate the container whenever i push an update :
+You can upgrade DokuWiki automatically through the UI, it works well. But i recommend to recreate the container whenever I push an update:
 
 ```bash
 docker-compose pull
