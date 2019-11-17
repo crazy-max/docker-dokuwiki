@@ -66,7 +66,7 @@ RUN apk --update --no-cache add -t build-dependencies \
   && apk del build-dependencies \
   && rm -rf /root/.gnupg /tmp/* /var/cache/apk/*
 
-COPY assets /
+COPY rootfs /
 
 RUN chmod a+x /usr/local/bin/* \
   && addgroup -g ${PGID} dokuwiki \
