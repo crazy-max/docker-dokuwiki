@@ -88,7 +88,7 @@ docker run -d -p 8000:8000 --name dokuwiki \
 
 ## Upgrade
 
-You can upgrade DokuWiki automatically through the UI, it works well. But i recommend to recreate the container whenever I push an update:
+You can upgrade DokuWiki automatically through the UI, it works well. But I recommend to recreate the container whenever I push an update:
 
 ```bash
 docker-compose pull
