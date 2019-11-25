@@ -46,15 +46,27 @@ RUN apk --update --no-cache add \
     su-exec \
     tar \
     tzdata \
-  && wget -q "https://github.com/just-containers/s6-overlay/releases/latest/download/s6-overlay-amd64.tar.gz" -qO "/tmp/s6-overlay-amd64.tar.gz" \
+  && S6_ARCH=$(case ${TARGETPLATFORM:-linux/amd64} in \
+    "linux/amd64")   echo "amd64"   ;; \
+    "linux/arm/v6")  echo "arm"     ;; \
+    "linux/arm/v7")  echo "armhf"   ;; \
+    "linux/arm64")   echo "aarch64" ;; \
+    "linux/386")     echo "x86"     ;; \
+    "linux/ppc64le") echo "ppc64le" ;; \
+    "linux/s390x")   echo "s390x"   ;; \
+    *)               echo ""        ;; esac) \
+  && echo "S6_ARCH=$S6_ARCH" \
+  && wget -q "https://github.com/just-containers/s6-overlay/releases/latest/download/s6-overlay-${S6_ARCH}.tar.gz" -qO "/tmp/s6-overlay-amd64.tar.gz" \
   && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
+  && s6-echo "s6-overlay installed" \
   && rm -rf /tmp/* /var/cache/apk/* /var/www/*
 
 ENV DOKUWIKI_VERSION="2018-04-22b" \
   DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255" \
   TZ="UTC" \
   PUID="1500" \
-  PGID="1500"
+  PGID="1500" \
+  S6_BEHAVIOUR_IF_STAGE2_FAILS="2"
 
 RUN apk --update --no-cache add -t build-dependencies \
     gnupg \

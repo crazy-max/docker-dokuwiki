@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC12 (2019/11/25)
+
+* Fix s6-overlay on other platforms
+
 ## 2018-04-22b-RC11 (2019/11/17)
 
 * Switch to [s6-overlay](https://github.com/just-containers/s6-overlay/) as a process supervisor
