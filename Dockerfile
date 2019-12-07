@@ -61,12 +61,12 @@ RUN apk --update --no-cache add \
   && s6-echo "s6-overlay installed" \
   && rm -rf /tmp/* /var/cache/apk/* /var/www/*
 
-ENV DOKUWIKI_VERSION="2018-04-22b" \
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2" \
+  DOKUWIKI_VERSION="2018-04-22b" \
   DOKUWIKI_MD5="605944ec47cd5f822456c54c124df255" \
   TZ="UTC" \
   PUID="1500" \
-  PGID="1500" \
-  S6_BEHAVIOUR_IF_STAGE2_FAILS="2"
+  PGID="1500"
 
 RUN apk --update --no-cache add -t build-dependencies \
     gnupg \

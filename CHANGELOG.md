@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC13 (2019/12/07)
+
+* Fix timezone
+
 ## 2018-04-22b-RC12 (2019/11/25)
 
 * Fix s6-overlay on other platforms
