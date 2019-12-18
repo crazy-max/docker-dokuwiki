@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC14 (2019/12/18)
+
+* Add imagemagick libraries for many image formats
+
 ## 2018-04-22b-RC13 (2019/12/07)
 
 * Fix timezone

@@ -22,6 +22,7 @@ LABEL maintainer="CrazyMax" \
 
 RUN apk --update --no-cache add \
     curl \
+    imagemagick \
     inotify-tools \
     libgd \
     nginx \
