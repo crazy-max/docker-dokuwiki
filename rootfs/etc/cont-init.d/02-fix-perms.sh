@@ -9,5 +9,4 @@ chown -R dokuwiki. \
   /var/log/nginx \
   /var/log/php7 \
   /var/run/nginx \
-  /var/run/php-fpm \
-  /var/tmp/nginx
+  /var/run/php-fpm
