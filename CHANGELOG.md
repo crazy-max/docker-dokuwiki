@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC16 (2020/03/27)
+
+* Fix folder creation
+
 ## 2018-04-22b-RC15 (2020/01/24)
 
 * Move Nginx temp folders to `/tmp`

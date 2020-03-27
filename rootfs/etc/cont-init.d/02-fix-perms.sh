@@ -1,6 +1,9 @@
 #!/usr/bin/with-contenv sh
 
 echo "Fixing perms..."
+mkdir -p /data \
+  /var/run/nginx \
+  /var/run/php-fpm
 chown dokuwiki. \
   /data
 chown -R dokuwiki. \

@@ -83,8 +83,7 @@ COPY rootfs /
 
 RUN chmod a+x /usr/local/bin/* \
   && addgroup -g ${PGID} dokuwiki \
-  && adduser -D -H -u ${PUID} -G dokuwiki -s /bin/sh dokuwiki \
-  && mkdir -p /data /var/run/nginx /var/run/php-fpm
+  && adduser -D -H -u ${PUID} -G dokuwiki -s /bin/sh dokuwiki
 
 EXPOSE 8000
 WORKDIR /var/www
