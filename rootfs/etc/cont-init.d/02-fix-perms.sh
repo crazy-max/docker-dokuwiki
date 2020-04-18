@@ -12,4 +12,9 @@ chown -R dokuwiki. \
   /var/log/nginx \
   /var/log/php7 \
   /var/run/nginx \
-  /var/run/php-fpm
+  /var/run/php-fpm \
+  /var/www/bin \
+  /var/www/conf \
+  /var/www/data \
+  /var/www/lib/plugins \
+  /var/www/lib/tpl

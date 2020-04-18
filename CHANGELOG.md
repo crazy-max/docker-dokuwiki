@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-22b-RC17 (2020/04/17)
+
+* Fix install (#6)
+
 ## 2018-04-22b-RC16 (2020/03/27)
 
 * Fix folder creation
