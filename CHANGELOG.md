@@ -1,8 +1,9 @@
 # Changelog
 
-## 2018-04-22b-RC17 (2020/04/17)
+## 2018-04-22b-RC17 (2020/04/18)
 
 * Fix install (#6)
+* Switch to Open Container Specification labels as label-schema.org ones are deprecated
 
 ## 2018-04-22b-RC16 (2020/03/27)
 
