@@ -17,6 +17,21 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 💡 Want to be notified of new releases? Check out 🔔 [Diun (Docker Image Update Notifier)](https://github.com/crazy-max/diun) project!
 
+___
+
+* [Features](#features)
+* [Docker](#docker)
+  * [Multi-platform image](#multi-platform-image)
+  * [Environment variables](#environment-variables)
+  * [Volumes](#volumes)
+  * [Ports](#ports)
+* [Usage](#usage)
+  * [Docker Compose](#docker-compose)
+  * [Command line](#command-line)
+* [Upgrade](#upgrade)
+* [How can I help?](#how-can-i-help)
+* [License](#license)
+
 ## Features
 
 * Run as non-root user
@@ -44,25 +59,26 @@ Image: crazymax/dokuwiki:latest
 
 ### Environment variables
 
-* `TZ` : The timezone assigned to the container (default `UTC`)
-* `PUID` : Dokuwiki user id (default `1500`)
+* `TZ`: The timezone assigned to the container (default `UTC`)
+* `PUID`: Dokuwiki user id (default `1500`)
 * `PGID`: Dokuwiki group id (default `1500`)
-* `MEMORY_LIMIT` : PHP memory limit (default `256M`)
-* `UPLOAD_MAX_SIZE` : Upload max size (default `16M`)
-* `OPCACHE_MEM_SIZE` : PHP OpCache memory consumption (default `128`)
-* `REAL_IP_FROM` : Trusted addresses that are known to send correct replacement addresses (default `0.0.0.0/32`)
-* `REAL_IP_HEADER` : Request header field whose value will be used to replace the client address (default `X-Forwarded-For`)
-* `LOG_IP_VAR` : Use another variable to retrieve the remote IP address for access [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) on Nginx. (default `remote_addr`)
+* `MEMORY_LIMIT`: PHP memory limit (default `256M`)
+* `UPLOAD_MAX_SIZE`: Upload max size (default `16M`)
+* `OPCACHE_MEM_SIZE`: PHP OpCache memory consumption (default `128`)
+* `LISTEN_IPV6`: Enable IPv6 for Nginx (default `true`)
+* `REAL_IP_FROM`: Trusted addresses that are known to send correct replacement addresses (default `0.0.0.0/32`)
+* `REAL_IP_HEADER`: Request header field whose value will be used to replace the client address (default `X-Forwarded-For`)
+* `LOG_IP_VAR`: Use another variable to retrieve the remote IP address for access [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) on Nginx. (default `remote_addr`)
 
 ### Volumes
 
-* `/data` : Contains configuration, plugins, templates and data
+* `/data`: Contains configuration, plugins, templates and data
 
 > :warning: Note that the volume should be owned by the user/group with the specified `PUID` and `PGID`. If you don't give the volume correct permissions, the container may not start.
 
 ### Ports
 
-* `8000` : HTTP port
+* `8000`: HTTP port
 
 ## Usage
 
@@ -94,7 +110,7 @@ docker-compose pull
 docker-compose up -d
 ```
 
-## How can I help ?
+## How can I help?
 
 All kinds of contributions are welcome :raised_hands:! The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon: You can also support this project by [**becoming a sponsor on GitHub**](https://github.com/sponsors/crazy-max) :clap: or by making a [Paypal donation](https://www.paypal.me/crazyws) to ensure this journey continues indefinitely! :rocket:
 
