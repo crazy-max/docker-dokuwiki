@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-04-22c-RC1 (2020/05/13)
+
+* DokuWiki 2018-04-22c
+* Add `LISTEN_IPV6` env var
+
 ## 2018-04-22b-RC17 (2020/04/18)
 
 * Fix install (#6)
