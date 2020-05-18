@@ -28,7 +28,9 @@ ___
 * [Usage](#usage)
   * [Docker Compose](#docker-compose)
   * [Command line](#command-line)
-* [Upgrade](#upgrade)
+* [Update](#update)
+* [Notes](#notes)
+  * [Sending mails with SMTP](#sending-mails-with-smtp)
 * [How can I help?](#how-can-i-help)
 * [License](#license)
 
@@ -36,6 +38,7 @@ ___
 
 * Run as non-root user
 * Multi-platform image
+* [msmtpd SMTP relay](https://github.com/crazy-max/docker-msmtpd) image to send emails
 * [Traefik](https://github.com/containous/traefik-library-image) as reverse proxy and creation/renewal of Let's Encrypt certificates (see [this template](examples/traefik))
 
 ## Docker
@@ -84,7 +87,7 @@ Image: crazymax/dokuwiki:latest
 
 ### Docker Compose
 
-Docker compose is the recommended way to run this image. You can use the following [docker compose template](examples/compose/docker-compose.yml), then run the container:
+Docker compose is the recommended way to run this image. Copy the content of folder [examples/compose](examples/compose) in `/var/dokuwiki/` on your host for example. Edit the compose and env files with your preferences and run the following commands:
 
 ```bash
 docker-compose up -d
@@ -101,14 +104,24 @@ docker run -d -p 8000:8000 --name dokuwiki \
   crazymax/dokuwiki:latest
 ```
 
-## Upgrade
+## Update
 
-You can upgrade DokuWiki automatically through the UI, it works well. But I recommend to recreate the container whenever I push an update:
+Recreate the container whenever I push an update:
 
 ```bash
 docker-compose pull
 docker-compose up -d
 ```
+
+## Notes
+
+### Sending mails with SMTP
+
+A Dokuwiki [SMTP Plugin](https://www.dokuwiki.org/plugin:smtp) is available to send emails over external SMTP servers. When the plugin is installed you have to configure it:
+
+![](.res/smtp-settings.png)
+
+Here we use our `msmtpd` service published on port `2500` declared in our [`docker-compose.yml`](examples/compose/docker-compose.yml).
 
 ## How can I help?
 

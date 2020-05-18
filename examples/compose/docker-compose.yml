@@ -12,4 +12,17 @@ services:
       - "./data:/data"
     env_file:
       - "./dokuwiki.env"
+    environment:
+      - "TZ"
+      - "PUID"
+      - "PGID"
+    restart: always
+
+  msmtpd:
+    image: crazymax/msmtpd:latest
+    container_name: dokuwiki_msmtpd
+    env_file:
+      - "./msmtpd.env"
+    environment:
+      - "TZ"
     restart: always
