@@ -1,9 +1,20 @@
 version: "3.5"
 
 services:
+  msmtpd:
+    image: crazymax/msmtpd:latest
+    container_name: dokuwiki_msmtpd
+    env_file:
+      - "./msmtpd.env"
+    environment:
+      - "TZ"
+    restart: always
+
   dokuwiki:
     image: crazymax/dokuwiki:latest
     container_name: dokuwiki
+    depends_on:
+      - msmtpd
     ports:
       - target: 8000
         published: 8000
@@ -16,13 +27,4 @@ services:
       - "TZ"
       - "PUID"
       - "PGID"
-    restart: always
-
-  msmtpd:
-    image: crazymax/msmtpd:latest
-    container_name: dokuwiki_msmtpd
-    env_file:
-      - "./msmtpd.env"
-    environment:
-      - "TZ"
     restart: always

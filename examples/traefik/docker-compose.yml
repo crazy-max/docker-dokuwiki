@@ -32,9 +32,20 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     restart: always
 
+  msmtpd:
+    image: crazymax/msmtpd:latest
+    container_name: dokuwiki_msmtpd
+    env_file:
+      - "./msmtpd.env"
+    environment:
+      - "TZ"
+    restart: always
+
   dokuwiki:
     image: crazymax/dokuwiki:latest
     container_name: dokuwiki
+    depends_on:
+      - msmtpd
     volumes:
       - "./data:/data"
     labels:
@@ -48,13 +59,4 @@ services:
       - "TZ"
       - "PUID"
       - "PGID"
-    restart: always
-
-  msmtpd:
-    image: crazymax/msmtpd:latest
-    container_name: dokuwiki_msmtpd
-    env_file:
-      - "./msmtpd.env"
-    environment:
-      - "TZ"
     restart: always

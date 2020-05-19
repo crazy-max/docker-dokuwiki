@@ -28,7 +28,7 @@ ___
 * [Usage](#usage)
   * [Docker Compose](#docker-compose)
   * [Command line](#command-line)
-* [Update](#update)
+* [Upgrade](#upgrade)
 * [Notes](#notes)
   * [Sending mails with SMTP](#sending-mails-with-smtp)
 * [How can I help?](#how-can-i-help)
@@ -104,7 +104,7 @@ docker run -d -p 8000:8000 --name dokuwiki \
   crazymax/dokuwiki:latest
 ```
 
-## Update
+## Upgrade
 
 Recreate the container whenever I push an update:
 
