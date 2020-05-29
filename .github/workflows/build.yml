@@ -2,8 +2,14 @@ name: build
 
 on:
   push:
-    branches: 'master'
+    branches: master
     tags: '*'
+    paths:
+      - '.github/workflows/build.yml'
+      - 'rootfs/**'
+      - 'Dockerfile'
+  pull_request:
+    branches: master
     paths:
       - '.github/workflows/build.yml'
       - 'rootfs/**'
@@ -20,7 +26,7 @@ jobs:
           DOCKER_USERNAME=crazymax
           DOCKER_IMAGE=crazymax/dokuwiki
           DOCKER_PLATFORMS=linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le
-          VERSION=snapshot
+          VERSION=edge
 
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             TAG=${GITHUB_REF#refs/tags/}
@@ -28,7 +34,7 @@ jobs:
           fi
 
           TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
-          if [[ "$VERSION" != "snapshot" ]]; then
+          if [[ "$VERSION" != "edge" ]]; then
             TAGS="$TAGS --tag ${DOCKER_IMAGE}:latest"
           fi
 
@@ -52,23 +58,23 @@ jobs:
           docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
       -
         name: Docker Login
-        if: success() && startsWith(github.ref, 'refs/tags/')
+        if: success() && github.event_name != 'pull_request'
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo "${DOCKER_PASSWORD}" | docker login --username "${{ steps.prepare.outputs.docker_username }}" --password-stdin
       -
         name: Docker Buildx (push)
-        if: success() && startsWith(github.ref, 'refs/tags/')
+        if: success() && github.event_name != 'pull_request'
         run: |
           docker buildx build --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
       -
         name: Docker Check Manifest
-        if: always() && startsWith(github.ref, 'refs/tags/')
+        if: success() && github.event_name != 'pull_request'
         run: |
           docker run --rm mplatform/mquery ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}
       -
         name: Clear
-        if: always() && startsWith(github.ref, 'refs/tags/')
+        if: always() && github.event_name != 'pull_request'
         run: |
           rm -f ${HOME}/.docker/config.json
