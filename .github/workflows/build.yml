@@ -1,6 +1,8 @@
 name: build
 
 on:
+  schedule:
+    - cron: '0 10 * * *' # everyday at 10am
   push:
     branches: master
     tags: '*'
@@ -32,9 +34,12 @@ jobs:
             TAG=${GITHUB_REF#refs/tags/}
             VERSION=${TAG%-*}
           fi
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            VERSION=nightly
+          fi
 
           TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
-          if [[ "$VERSION" != "edge" ]]; then
+          if [ "$VERSION" != "edge" ] && [ "$VERSION" != "schedule" ]; then
             TAGS="$TAGS --tag ${DOCKER_IMAGE}:latest"
           fi
 
@@ -46,11 +51,9 @@ jobs:
             --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
             --build-arg VCS_REF=${GITHUB_SHA::8} \
             ${TAGS} --file Dockerfile .
-
-          env|sort
       -
         name: Set up Docker Buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
+        uses: crazy-max/ghaction-docker-buildx@v2
       -
         name: Checkout
         uses: actions/checkout@v2
