@@ -39,7 +39,7 @@ jobs:
           fi
 
           TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
-          if [ "$VERSION" != "edge" ] && [ "$VERSION" != "schedule" ]; then
+          if [ "$VERSION" != "edge" ] && [ "$VERSION" != "nightly" ]; then
             TAGS="$TAGS --tag ${DOCKER_IMAGE}:latest"
           fi
 
