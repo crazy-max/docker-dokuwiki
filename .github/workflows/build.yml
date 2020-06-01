@@ -1,21 +1,18 @@
 name: build
 
 on:
-  schedule:
-    - cron: '0 10 * * *' # everyday at 10am
   push:
-    branches: master
-    tags: '*'
-    paths:
-      - '.github/workflows/build.yml'
-      - 'rootfs/**'
-      - 'Dockerfile'
+    branches:
+      - 'master'
+    tags:
+      - '*'
+    paths-ignore:
+      - '**.md'
   pull_request:
-    branches: master
-    paths:
-      - '.github/workflows/build.yml'
-      - 'rootfs/**'
-      - 'Dockerfile'
+    branches:
+      - 'master'
+    paths-ignore:
+      - '**.md'
 
 jobs:
   build:
@@ -34,12 +31,9 @@ jobs:
             TAG=${GITHUB_REF#refs/tags/}
             VERSION=${TAG%-*}
           fi
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            VERSION=nightly
-          fi
 
           TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
-          if [ "$VERSION" != "edge" ] && [ "$VERSION" != "nightly" ]; then
+          if [ "$VERSION" != "edge" ]; then
             TAGS="$TAGS --tag ${DOCKER_IMAGE}:latest"
           fi
 
