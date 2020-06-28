@@ -1,5 +1,10 @@
 # Changelog
 
+## rc2020-06-09-RC1 (2020/06/28)
+
+* DokuWiki rc2020-06-09
+* Alpine Linux 3.12
+
 ## 2018-04-22c-RC2 (2020/05/29)
 
 * Alpine Linux 3.11
