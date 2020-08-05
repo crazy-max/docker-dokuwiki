@@ -61,8 +61,8 @@ RUN apk --update --no-cache add \
   && rm -rf /tmp/* /var/cache/apk/* /var/www/*
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2" \
-  DOKUWIKI_VERSION="rc2020-06-09" \
-  DOKUWIKI_MD5="9cd44ea376a45f1eb72e3b604a00330a" \
+  DOKUWIKI_VERSION="2020-07-29" \
+  DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9" \
   TZ="UTC" \
   PUID="1500" \
   PGID="1500"
