@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-07-29-RC2 (2020/08/09)
+
+* Now based on [Alpine Linux 3.12 with s6 overlay](https://github.com/crazy-max/docker-alpine-s6/)
+
 ## 2020-07-29-RC1 (2020/08/05)
 
 * DokuWiki 2020-07-29
