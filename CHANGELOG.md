@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-07-29-RC3 (2020/09/28)
+
+* Add SQLite 3.x driver for PDO (#21)
+
 ## 2020-07-29-RC2 (2020/08/09)
 
 * Now based on [Alpine Linux 3.12 with s6 overlay](https://github.com/crazy-max/docker-alpine-s6/)
