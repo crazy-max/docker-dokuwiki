@@ -1,18 +1,17 @@
-<p align="center"><a href="https://github.com/crazy-max/docker-dokuwiki" target="_blank"><img height="128" src="https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/.res/docker-dokuwiki.jpg"></a></p>
+<p align="center"><a href="https://github.com/crazy-max/docker-dokuwiki" target="_blank"><img height="128" src="https://raw.githubusercontent.com/crazy-max/docker-dokuwiki/master/.github/docker-dokuwiki.jpg"></a></p>
 
 <p align="center">
   <a href="https://hub.docker.com/r/crazymax/dokuwiki/tags?page=1&ordering=last_updated"><img src="https://img.shields.io/github/v/tag/crazy-max/docker-dokuwiki?label=version&style=flat-square" alt="Latest Version"></a>
   <a href="https://github.com/crazy-max/docker-dokuwiki/actions?workflow=build"><img src="https://img.shields.io/github/workflow/status/crazy-max/docker-dokuwiki/build?label=build&logo=github&style=flat-square" alt="Build Status"></a>
   <a href="https://hub.docker.com/r/crazymax/dokuwiki/"><img src="https://img.shields.io/docker/stars/crazymax/dokuwiki.svg?style=flat-square&logo=docker" alt="Docker Stars"></a>
   <a href="https://hub.docker.com/r/crazymax/dokuwiki/"><img src="https://img.shields.io/docker/pulls/crazymax/dokuwiki.svg?style=flat-square&logo=docker" alt="Docker Pulls"></a>
-  <a href="https://www.codacy.com/app/crazy-max/docker-dokuwiki"><img src="https://img.shields.io/codacy/grade/e1c3ab643f734445bf7f6ecdd44a2614.svg?style=flat-square" alt="Code Quality"></a>
   <br /><a href="https://github.com/sponsors/crazy-max"><img src="https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
   <a href="https://www.paypal.me/crazyws"><img src="https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square" alt="Donate Paypal"></a>
 </p>
 
 ## About
 
-🐳 [DokuWiki](https://www.dokuwiki.org/dokuwiki) Docker image based on Alpine Linux.<br />
+[DokuWiki](https://www.dokuwiki.org/dokuwiki) Docker image based on Alpine Linux.<br />
 If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other Docker images!
 
 💡 Want to be notified of new releases? Check out 🔔 [Diun (Docker Image Update Notifier)](https://github.com/crazy-max/diun) project!
@@ -120,7 +119,7 @@ docker-compose up -d
 
 A Dokuwiki [SMTP Plugin](https://www.dokuwiki.org/plugin:smtp) is available to send emails over external SMTP servers. When the plugin is installed you have to configure it:
 
-![](.res/smtp-settings.png)
+![](.github/smtp-settings.png)
 
 Here we use our `msmtpd` service published on port `2500` declared in our [`docker-compose.yml`](examples/compose/docker-compose.yml).
 
