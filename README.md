@@ -20,7 +20,7 @@ ___
 
 * [Features](#features)
 * [Docker](#docker)
-  * [Multi-platform image](#multi-platform-image)
+  * [Image](#image)
   * [Environment variables](#environment-variables)
   * [Volumes](#volumes)
   * [Ports](#ports)
@@ -42,7 +42,12 @@ ___
 
 ## Docker
 
-### Multi-platform image
+### Image
+
+| Registry                                                                                         | Image                           |
+|--------------------------------------------------------------------------------------------------|---------------------------------|
+| [Docker Hub](https://hub.docker.com/r/crazymax/dokuwiki/)                                            | `crazymax/dokuwiki`                 |
+| [GitHub Container Registry](https://github.com/users/crazy-max/packages/container/package/dokuwiki)  | `ghcr.io/crazy-max/dokuwiki`        |
 
 Following platforms for this image are available:
 
