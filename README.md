@@ -19,11 +19,11 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 ___
 
 * [Features](#features)
-* [Docker](#docker)
-  * [Image](#image)
-  * [Environment variables](#environment-variables)
-  * [Volumes](#volumes)
-  * [Ports](#ports)
+* [Build locally](#build-locally)
+* [Image](#image)
+* [Environment variables](#environment-variables)
+* [Volumes](#volumes)
+* [Ports](#ports)
 * [Usage](#usage)
   * [Docker Compose](#docker-compose)
   * [Command line](#command-line)
@@ -40,9 +40,20 @@ ___
 * [msmtpd SMTP relay](https://github.com/crazy-max/docker-msmtpd) image to send emails
 * [Traefik](https://github.com/containous/traefik-library-image) as reverse proxy and creation/renewal of Let's Encrypt certificates (see [this template](examples/traefik))
 
-## Docker
+### Build locally
 
-### Image
+```shell
+git clone https://github.com/crazy-max/docker-dokuwiki.git
+cd docker-dokuwiki
+
+# Build image and output to docker (default)
+docker buildx bake
+
+# Build multi-platform image
+docker buildx bake image-all
+```
+
+## Image
 
 | Registry                                                                                         | Image                           |
 |--------------------------------------------------------------------------------------------------|---------------------------------|
@@ -65,7 +76,7 @@ Image: crazymax/dokuwiki:latest
    - linux/s390x
 ```
 
-### Environment variables
+## Environment variables
 
 * `TZ`: The timezone assigned to the container (default `UTC`)
 * `PUID`: Dokuwiki user id (default `1500`)
@@ -79,13 +90,13 @@ Image: crazymax/dokuwiki:latest
 * `REAL_IP_HEADER`: Request header field whose value will be used to replace the client address (default `X-Forwarded-For`)
 * `LOG_IP_VAR`: Use another variable to retrieve the remote IP address for access [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) on Nginx. (default `remote_addr`)
 
-### Volumes
+## Volumes
 
 * `/data`: Contains configuration, plugins, templates and data
 
 > :warning: Note that the volume should be owned by the user/group with the specified `PUID` and `PGID`. If you don't give the volume correct permissions, the container may not start.
 
-### Ports
+## Ports
 
 * `8000`: HTTP port
 

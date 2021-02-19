@@ -1,9 +1,7 @@
+ARG DOKUWIKI_VERSION="2020-07-29"
+ARG DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9"
+
 FROM --platform=${TARGETPLATFORM:-linux/amd64} crazymax/alpine-s6:3.12
-
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-RUN printf "I am running on ${BUILDPLATFORM:-linux/amd64}, building for ${TARGETPLATFORM:-linux/amd64}\n$(uname -a)\n"
-
 LABEL maintainer="CrazyMax"
 
 RUN apk --update --no-cache add \
@@ -38,12 +36,12 @@ RUN apk --update --no-cache add \
   && rm -rf /tmp/* /var/cache/apk/* /var/www/*
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2" \
-  DOKUWIKI_VERSION="2020-07-29" \
-  DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9" \
   TZ="UTC" \
   PUID="1500" \
   PGID="1500"
 
+ARG DOKUWIKI_VERSION
+ARG DOKUWIKI_MD5
 RUN apk --update --no-cache add -t build-dependencies \
     gnupg \
     wget \
