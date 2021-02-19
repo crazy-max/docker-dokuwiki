@@ -13,6 +13,7 @@ LISTEN_IPV6=${LISTEN_IPV6:-true}
 REAL_IP_FROM=${REAL_IP_FROM:-0.0.0.0/32}
 REAL_IP_HEADER=${REAL_IP_HEADER:-X-Forwarded-For}
 LOG_IP_VAR=${LOG_IP_VAR:-remote_addr}
+DOKUWIKI_RUN_INDEXER=${DOKUWIKI_RUN_INDEXER:-true}
 
 # Timezone
 echo "Setting timezone to ${TZ}..."
@@ -116,7 +117,7 @@ if [ ${firstInstall} -eq 1 ]; then
   echo ">>"
   echo ">> Open your browser to install DokuWiki through the wizard (/install.php)"
   echo ">>"
-else
+elif [ "$DOKUWIKI_RUN_INDEXER" = "true" ]; then
   echo "Launching DokuWiki indexer..."
   runas_user php7 /var/www/bin/indexer.php -c
 fi
