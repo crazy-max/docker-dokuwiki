@@ -2,15 +2,16 @@
 
 inotifywait -m /data/plugins /var/www/lib/plugins /data/tpl /var/www/lib/tpl |
 while read -r directory events folder; do
-  if [ ! -d ${directory} ]; then
+  if [ ! -d "${directory}" ]; then
     continue
   fi
+
   #echo "## [watch_folders] $directory $events $folder"
-  if [ ${directory} == "/data/plugins/" ]; then
-    if [ ${events} == "DELETE,ISDIR" -a -d "/var/www/lib/plugins/${folder}" ]; then
+  if [ "${directory}" = "/data/plugins/" ]; then
+    if [ "${events}" = "DELETE,ISDIR" ] && [ -d "/var/www/lib/plugins/${folder}" ]; then
       rm -f "/var/www/lib/plugins/${folder}"
       echo "#### [watch_folders] Remove /var/www/lib/plugins/${folder}"
-    elif [ ${events} == "CREATE,ISDIR" ]; then
+    elif [ "${events}" = "CREATE,ISDIR" ]; then
       if [ ! -d /var/www/lib/plugins/${folder} ]; then
         ln -sf "/data/plugins/${folder}" /var/www/lib/plugins/
         echo "#### [watch_folders] Add /var/www/lib/plugins/${folder}"
@@ -18,34 +19,34 @@ while read -r directory events folder; do
         echo "#### [watch_folders] ERROR: Plugin ${folder} already exists in DokuWiki"
       fi
     fi
-  elif [ ${directory} == "/var/www/lib/plugins/" ]; then
-    if [ ${events} == "DELETE" -a -d "/data/plugins/${folder}" ]; then
+  elif [ "${directory}" = "/var/www/lib/plugins/" ]; then
+    if [ "${events}" = "DELETE" ] && [ -d "/data/plugins/${folder}" ]; then
       rm -rf "/data/plugins/${folder}"
       echo "#### [watch_folders] Remove /data/plugins/${folder}"
-    elif [ ${events} == "CREATE,ISDIR" ]; then
+    elif [ "${events}" = "CREATE,ISDIR" ]; then
       inotifywait -e close "/var/www/lib/plugins/syntax.php"
       mv "/var/www/lib/plugins/${folder}" /data/plugins/
       echo "#### [watch_folders] Move /var/www/lib/plugins/${folder}"
     fi
-  elif [ ${directory} == "/data/tpl/" ]; then
-    if [ ${events} == "DELETE,ISDIR" ]; then
+  elif [ "${directory}" = "/data/tpl/" ]; then
+    if [ "${events}" = "DELETE,ISDIR" ]; then
       rm -f /var/www/lib/tpl/${folder}
       echo "#### [watch_folders] Remove /var/www/lib/tpl/${folder}"
-    elif [ ${events} == "CREATE,ISDIR" ]; then
-      if [ ! -d /var/www/lib/tpl/${folder} ]; then
-        ln -sf /data/tpl/${folder} /var/www/lib/tpl/
+    elif [ "${events}" = "CREATE,ISDIR" ]; then
+      if [ ! -d "/var/www/lib/tpl/${folder}" ]; then
+        ln -sf "/data/tpl/${folder}" /var/www/lib/tpl/
         echo "#### [watch_folders] Add /var/www/lib/tpl/${folder}"
       else
         echo "#### [watch_folders] ERROR: Tpl ${folder} already exists in DokuWiki"
       fi
     fi
-  elif [ ${directory} == "/var/www/lib/tpl/" ]; then
-    if [ ${events} == "DELETE" ]; then
-      rm -rf /data/tpl/${folder}
+  elif [ "${directory}" = "/var/www/lib/tpl/" ]; then
+    if [ "${events}" = "DELETE" ]; then
+      rm -rf "/data/tpl/${folder}"
       echo "#### [watch_folders] Remove /data/tpl/${folder}"
-    elif [ ${events} == "CREATE,ISDIR" ]; then
-      mv /var/www/lib/tpl/${folder} /data/tpl/
-      ln -sf /data/tpl/${folder} /var/www/lib/tpl/
+    elif [ "${events}" = "CREATE,ISDIR" ]; then
+      mv "/var/www/lib/tpl/${folder}" /data/tpl/
+      ln -sf "/data/tpl/${folder}" /var/www/lib/tpl/
       echo "#### [watch_folders] Move /var/www/lib/tpl/${folder}"
     fi
   fi
