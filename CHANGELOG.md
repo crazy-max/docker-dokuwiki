@@ -1,5 +1,15 @@
 # Changelog
 
+## 2020-07-29-r4 (2021/02/20)
+
+* Auto preprend preload (#26)
+* Add option to disable indexer on startup (#25)
+* Fix DOKU_INC (#26)
+* s6-overlay 2.2.0.3
+* Switch to buildx bake
+* Publish to GHCR
+* Allow to clear environment in FPM workers
+
 ## 2020-07-29-RC3 (2020/09/28)
 
 * Add SQLite 3.x driver for PDO (#21)
