@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-07-29-r5 (2021/02/20)
+
+* Fix preload path for auto prepend (#26)
+
 ## 2020-07-29-r4 (2021/02/20)
 
 * Auto preprend preload (#26)
