@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-07-29-r7 (2021/03/02)
+
+* Switch to `gosu`
+
 ## 2020-07-29-r6 (2021/02/20)
 
 * Downgrade s6-overlay to 2.1.0.2 (#29)

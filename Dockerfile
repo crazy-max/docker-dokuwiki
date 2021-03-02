@@ -1,9 +1,11 @@
 ARG DOKUWIKI_VERSION="2020-07-29"
 ARG DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9"
 
+FROM --platform=${TARGETPLATFORM:-linux/amd64} crazymax/gosu:latest AS gosu
 FROM --platform=${TARGETPLATFORM:-linux/amd64} crazymax/alpine-s6:3.12-2.1.0.2
 LABEL maintainer="CrazyMax"
 
+COPY --from=gosu / /
 RUN apk --update --no-cache add \
     curl \
     imagemagick \
@@ -30,7 +32,6 @@ RUN apk --update --no-cache add \
     php7-zip \
     php7-zlib \
     shadow \
-    su-exec \
     tar \
     tzdata \
   && rm -rf /tmp/* /var/cache/apk/* /var/www/*
