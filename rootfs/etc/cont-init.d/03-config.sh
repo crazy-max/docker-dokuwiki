@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv sh
 
 runas_user() {
-  gosu dokuwiki:dokuwiki "$@"
+  yasu dokuwiki:dokuwiki "$@"
 }
 
 TZ=${TZ:-UTC}

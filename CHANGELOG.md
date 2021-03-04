@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-07-29-r8 (2021/03/04)
+
+* Renamed `yasu` (more info https://github.com/crazy-max/yasu#yet-another)
+
 ## 2020-07-29-r7 (2021/03/02)
 
 * Switch to `gosu`
