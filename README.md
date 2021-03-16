@@ -40,7 +40,7 @@ ___
 * [msmtpd SMTP relay](https://github.com/crazy-max/docker-msmtpd) image to send emails
 * [Traefik](https://github.com/containous/traefik-library-image) as reverse proxy and creation/renewal of Let's Encrypt certificates (see [this template](examples/traefik))
 
-### Build locally
+## Build locally
 
 ```shell
 git clone https://github.com/crazy-max/docker-dokuwiki.git
