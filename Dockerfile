@@ -3,7 +3,6 @@ ARG DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9"
 
 FROM crazymax/yasu:latest AS yasu
 FROM crazymax/alpine-s6:3.12-2.1.0.2
-LABEL maintainer="CrazyMax"
 
 COPY --from=yasu / /
 RUN apk --update --no-cache add \
