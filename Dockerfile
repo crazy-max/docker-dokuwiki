@@ -2,7 +2,7 @@ ARG DOKUWIKI_VERSION="2020-07-29"
 ARG DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9"
 
 FROM crazymax/yasu:latest AS yasu
-FROM crazymax/alpine-s6:3.12-2.1.0.2
+FROM crazymax/alpine-s6:3.14-2.2.0.3
 
 COPY --from=yasu / /
 RUN apk --update --no-cache add \
@@ -17,13 +17,13 @@ RUN apk --update --no-cache add \
     php7-curl \
     php7-fpm \
     php7-gd \
-    php7-imagick \
     php7-json \
     php7-ldap \
     php7-mbstring \
     php7-openssl \
     php7-pdo \
     php7-pdo_sqlite \
+    php7-pecl-imagick \
     php7-session \
     php7-simplexml \
     php7-sqlite3 \
