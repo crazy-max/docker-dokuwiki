@@ -1,8 +1,8 @@
-ARG DOKUWIKI_VERSION="2020-07-29"
-ARG DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9"
+ARG DOKUWIKI_VERSION="2022-07-31a"
+ARG DOKUWIKI_MD5="4459ea99e3a4ce2b767482f505724dcc"
 
 FROM crazymax/yasu:latest AS yasu
-FROM crazymax/alpine-s6:3.14-2.2.0.3
+FROM crazymax/alpine-s6:3.16-2.2.0.3
 
 COPY --from=yasu / /
 RUN apk --update --no-cache add \
@@ -11,25 +11,25 @@ RUN apk --update --no-cache add \
     inotify-tools \
     libgd \
     nginx \
-    php7 \
-    php7-cli \
-    php7-ctype \
-    php7-curl \
-    php7-fpm \
-    php7-gd \
-    php7-json \
-    php7-ldap \
-    php7-mbstring \
-    php7-openssl \
-    php7-pdo \
-    php7-pdo_sqlite \
-    php7-pecl-imagick \
-    php7-session \
-    php7-simplexml \
-    php7-sqlite3 \
-    php7-xml \
-    php7-zip \
-    php7-zlib \
+    php8 \
+    php8-cli \
+    php8-ctype \
+    php8-curl \
+    php8-fpm \
+    php8-gd \
+    php8-json \
+    php8-ldap \
+    php8-mbstring \
+    php8-openssl \
+    php8-pdo \
+    php8-pdo_sqlite \
+    php8-pecl-imagick \
+    php8-session \
+    php8-simplexml \
+    php8-sqlite3 \
+    php8-xml \
+    php8-zip \
+    php8-zlib \
     shadow \
     tar \
     tzdata \
