@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv sh
+# shellcheck shell=sh
 
 runas_user() {
   yasu dokuwiki:dokuwiki "$@"

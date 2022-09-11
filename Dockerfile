@@ -33,7 +33,7 @@ RUN apk --update --no-cache add \
     shadow \
     tar \
     tzdata \
-  && rm -rf /tmp/* /var/cache/apk/* /var/www/*
+  && rm -rf /tmp/* /var/www/*
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2" \
   TZ="UTC" \
@@ -50,7 +50,7 @@ RUN apk --update --no-cache add -t build-dependencies \
   && echo "$DOKUWIKI_MD5  /tmp/dokuwiki-$DOKUWIKI_VERSION.tgz" | md5sum -c - | grep OK \
   && tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 -C /var/www \
   && apk del build-dependencies \
-  && rm -rf /root/.gnupg /tmp/* /var/cache/apk/*
+  && rm -rf /root/.gnupg /tmp/*
 
 COPY rootfs /
 
