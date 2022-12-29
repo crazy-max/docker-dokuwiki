@@ -11,25 +11,25 @@ RUN apk --update --no-cache add \
     inotify-tools \
     libgd \
     nginx \
-    php8 \
-    php8-cli \
-    php8-ctype \
-    php8-curl \
-    php8-fpm \
-    php8-gd \
-    php8-json \
-    php8-ldap \
-    php8-mbstring \
-    php8-openssl \
-    php8-pdo \
-    php8-pdo_sqlite \
-    php8-pecl-imagick \
-    php8-session \
-    php8-simplexml \
-    php8-sqlite3 \
-    php8-xml \
-    php8-zip \
-    php8-zlib \
+    php81 \
+    php81-cli \
+    php81-ctype \
+    php81-curl \
+    php81-fpm \
+    php81-gd \
+    php81-json \
+    php81-ldap \
+    php81-mbstring \
+    php81-openssl \
+    php81-pdo \
+    php81-pdo_sqlite \
+    php81-pecl-imagick \
+    php81-session \
+    php81-simplexml \
+    php81-sqlite3 \
+    php81-xml \
+    php81-zip \
+    php81-zlib \
     shadow \
     tar \
     tzdata \
