@@ -2,7 +2,7 @@ ARG DOKUWIKI_VERSION="2022-07-31a"
 ARG DOKUWIKI_MD5="4459ea99e3a4ce2b767482f505724dcc"
 
 FROM crazymax/yasu:latest AS yasu
-FROM crazymax/alpine-s6:3.16-2.2.0.3
+FROM crazymax/alpine-s6:3.17-2.2.0.3
 
 COPY --from=yasu / /
 RUN apk --update --no-cache add \
