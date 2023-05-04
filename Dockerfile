@@ -1,9 +1,16 @@
-ARG DOKUWIKI_VERSION="2022-07-31a"
-ARG DOKUWIKI_MD5="4459ea99e3a4ce2b767482f505724dcc"
+# syntax=docker/dockerfile:1
+
+ARG DOKUWIKI_VERSION="2023-04-04"
+ARG ALPINE_VERSION="3.17"
+
+FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION} AS src
+RUN apk --update --no-cache add wget tar
+WORKDIR /src/dokuwiki
+ARG DOKUWIKI_VERSION
+RUN wget -qO- "https://github.com/dokuwiki/dokuwiki/releases/download/release-${DOKUWIKI_VERSION}/dokuwiki-${DOKUWIKI_VERSION}.tgz" | tar xvz --strip 1
 
 FROM crazymax/yasu:latest AS yasu
-FROM crazymax/alpine-s6:3.17-2.2.0.3
-
+FROM crazymax/alpine-s6:${ALPINE_VERSION}-2.2.0.3
 COPY --from=yasu / /
 RUN apk --update --no-cache add \
     curl \
@@ -12,10 +19,10 @@ RUN apk --update --no-cache add \
     libgd \
     nginx \
     php81 \
-    php81-dom \
     php81-cli \
     php81-ctype \
     php81-curl \
+    php81-dom \
     php81-fpm \
     php81-gd \
     php81-json \
@@ -41,18 +48,7 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2" \
   PUID="1500" \
   PGID="1500"
 
-ARG DOKUWIKI_VERSION
-ARG DOKUWIKI_MD5
-RUN apk --update --no-cache add -t build-dependencies \
-    gnupg \
-    wget \
-  && cd /tmp \
-  && wget -q "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz" \
-  && echo "$DOKUWIKI_MD5  /tmp/dokuwiki-$DOKUWIKI_VERSION.tgz" | md5sum -c - | grep OK \
-  && tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 -C /var/www \
-  && apk del build-dependencies \
-  && rm -rf /root/.gnupg /tmp/*
-
+COPY --from=src /src/dokuwiki /var/www
 COPY rootfs /
 
 RUN chmod a+x /usr/local/bin/* \
