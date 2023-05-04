@@ -25,6 +25,7 @@ RUN apk --update --no-cache add \
     php81-dom \
     php81-fpm \
     php81-gd \
+    php81-iconv \
     php81-json \
     php81-ldap \
     php81-mbstring \
