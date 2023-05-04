@@ -12,6 +12,7 @@ RUN apk --update --no-cache add \
     libgd \
     nginx \
     php81 \
+    php81-dom \
     php81-cli \
     php81-ctype \
     php81-curl \
