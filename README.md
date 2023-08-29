@@ -58,10 +58,10 @@ docker buildx bake image-all
 
 ## Image
 
-| Registry                                                                                         | Image                           |
-|--------------------------------------------------------------------------------------------------|---------------------------------|
-| [Docker Hub](https://hub.docker.com/r/crazymax/dokuwiki/)                                            | `crazymax/dokuwiki`                 |
-| [GitHub Container Registry](https://github.com/users/crazy-max/packages/container/package/dokuwiki)  | `ghcr.io/crazy-max/dokuwiki`        |
+| Registry                                                                                            | Image                        |
+|-----------------------------------------------------------------------------------------------------|------------------------------|
+| [Docker Hub](https://hub.docker.com/r/crazymax/dokuwiki/)                                           | `crazymax/dokuwiki`          |
+| [GitHub Container Registry](https://github.com/users/crazy-max/packages/container/package/dokuwiki) | `ghcr.io/crazy-max/dokuwiki` |
 
 Following platforms for this image are available:
 
@@ -97,7 +97,9 @@ Image: crazymax/dokuwiki:latest
 
 * `/data`: Contains configuration, plugins, templates and data
 
-> :warning: Note that the volume should be owned by the user/group with the specified `PUID` and `PGID`. If you don't give the volume correct permissions, the container may not start.
+> :warning: Note that the volume should be owned by the user/group with the
+> specified `PUID` and `PGID`. If you don't give the volume correct permissions,
+> the container may not start.
 
 ## Ports
 
@@ -107,11 +109,14 @@ Image: crazymax/dokuwiki:latest
 
 ### Docker Compose
 
-Docker compose is the recommended way to run this image. Copy the content of folder [examples/compose](examples/compose) in `/var/dokuwiki/` on your host for example. Edit the compose and env files with your preferences and run the following commands:
+Docker compose is the recommended way to run this image. Copy the content of
+folder [examples/compose](examples/compose) in `/var/dokuwiki/` on your host
+for example. Edit the compose and env files with your preferences and run the
+following commands:
 
 ```bash
-docker-compose up -d
-docker-compose logs -f
+docker compose up -d
+docker compose logs -f
 ```
 
 ### Command line
@@ -129,19 +134,22 @@ docker run -d -p 8000:8000 --name dokuwiki \
 Recreate the container whenever I push an update:
 
 ```bash
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 ## Notes
 
 ### Sending mails with SMTP
 
-A Dokuwiki [SMTP Plugin](https://www.dokuwiki.org/plugin:smtp) is available to send emails over external SMTP servers. When the plugin is installed you have to configure it:
+A Dokuwiki [SMTP Plugin](https://www.dokuwiki.org/plugin:smtp) is available to
+send emails over external SMTP servers. When the plugin is installed you have
+to configure it:
 
 ![](.github/smtp-settings.png)
 
-Here we use our `msmtpd` service published on port `2500` declared in our [`docker-compose.yml`](examples/compose/docker-compose.yml).
+Here we use our `msmtpd` service published on port `2500` declared in our
+[`compose.yml`](examples/compose/compose.yml).
 
 ## Contributing
 
