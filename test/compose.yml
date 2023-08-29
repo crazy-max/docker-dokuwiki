@@ -1,0 +1,19 @@
+name: dokuwiki
+
+services:
+  dokuwiki:
+    image: ${DOKUWIKI_IMAGE:-crazymax/dokuwiki}
+    container_name: ${DOKUWIKI_CONTAINER:-dokuwiki}
+    ports:
+      - target: 8000
+        published: 8000
+        protocol: tcp
+    volumes:
+      - "./data:/data"
+    env_file:
+      - "./dokuwiki.env"
+    environment:
+      - "TZ"
+      - "PUID"
+      - "PGID"
+    restart: always
