@@ -14,8 +14,7 @@
 Docker image for [DokuWiki](https://www.dokuwiki.org/dokuwiki), a simple to use
 and highly versatile Open Source wiki software that doesn't require a database.
 
-> **Note**
-> 
+> [!TIP]
 > Want to be notified of new releases? Check out 🔔 [Diun (Docker Image Update Notifier)](https://github.com/crazy-max/diun)
 > project!
 
