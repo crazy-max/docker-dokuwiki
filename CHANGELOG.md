@@ -1,5 +1,11 @@
 # Changelog
 
+## 2024-02-06a-r0 (2024/04/29)
+
+* Dokuwiki 2024-02-06a (#65)
+* PHP 8.2
+* Alpine Linux 3.19
+
 ## 2023-04-04-r1 (2023/05/04)
 
 * Add `php81-iconv` extension (#54)
