@@ -5,9 +5,9 @@ echo "Fixing perms..."
 mkdir -p /data \
   /var/run/nginx \
   /var/run/php-fpm
-chown dokuwiki. \
+chown dokuwiki:dokuwiki \
   /data
-chown -R dokuwiki. \
+chown -R dokuwiki:dokuwiki \
   /tpls \
   /var/lib/nginx \
   /var/log/nginx \

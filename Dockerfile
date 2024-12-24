@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ARG DOKUWIKI_VERSION="2024-02-06b"
-ARG ALPINE_VERSION="3.19"
+ARG ALPINE_VERSION="3.21"
 
 FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION} AS src
 RUN apk --update --no-cache add wget tar
