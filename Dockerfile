@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ARG DOKUWIKI_VERSION="2024-02-06b"
-ARG ALPINE_VERSION="3.19"
+ARG ALPINE_VERSION="3.21"
 
 FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION} AS src
 RUN apk --update --no-cache add wget tar
@@ -18,27 +18,27 @@ RUN apk --update --no-cache add \
     inotify-tools \
     libgd \
     nginx \
-    php82 \
-    php82-cli \
-    php82-ctype \
-    php82-curl \
-    php82-dom \
-    php82-fpm \
-    php82-gd \
-    php82-iconv \
-    php82-json \
-    php82-ldap \
-    php82-mbstring \
-    php82-openssl \
-    php82-pdo \
-    php82-pdo_sqlite \
-    php82-pecl-imagick \
-    php82-session \
-    php82-simplexml \
-    php82-sqlite3 \
-    php82-xml \
-    php82-zip \
-    php82-zlib \
+    php83 \
+    php83-cli \
+    php83-ctype \
+    php83-curl \
+    php83-dom \
+    php83-fpm \
+    php83-gd \
+    php83-iconv \
+    php83-json \
+    php83-ldap \
+    php83-mbstring \
+    php83-openssl \
+    php83-pdo \
+    php83-pdo_sqlite \
+    php83-pecl-imagick \
+    php83-session \
+    php83-simplexml \
+    php83-sqlite3 \
+    php83-xml \
+    php83-zip \
+    php83-zlib \
     shadow \
     tar \
     tzdata \
